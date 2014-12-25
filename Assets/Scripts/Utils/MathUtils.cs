@@ -2,7 +2,7 @@
 
 public class MathUtils
 {
-    public const float epsilon = 0.0001f;
+    public const float epsilon = 0.1f;
 
     static public bool AreFloatsEqual(float floatA, float floatB)
     {
@@ -11,12 +11,12 @@ public class MathUtils
 
     static public bool ArePointsEqual(Vector2 pointA, Vector2 pointB)
     {
-        return (pointB - pointA).magnitude < epsilon;
+        return (pointB - pointA).sqrMagnitude < epsilon;
     }
 
     static public bool ArePointsEqual(Vector3 pointA, Vector3 pointB)
     {
-        return (pointB - pointA).magnitude < epsilon;
+        return (pointB - pointA).sqrMagnitude < epsilon;
     }
 
     static public void TwoSegmentsIntersection(Vector2 segment1Point1, Vector2 segment1Point2, Vector2 segment2Point1, Vector2 segment2Point2, out bool intersects, out Vector2 intersection)

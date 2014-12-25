@@ -60,10 +60,13 @@ public class BridgeBehaviour : UVQuad
             float fDistanceFromAnchorToCoveredBridgeStartPoint = (m_coveredBridge.m_startPoint - m_spreadAnchor.Position).magnitude;
             float fDistanceFromAnchorToCoveredBridgeEndPoint = (m_coveredBridge.m_endPoint - m_spreadAnchor.Position).magnitude;
 
+            Debug.Log("spreadingDistance:" + fDistanceFromAnchorToSpreadBridgeStartPoint + "targetDistance:" + fDistanceFromAnchorToCoveredBridgeStartPoint);
+
             bool bStartPointReached = false;
             bool bEndPointReached = false;
-            if (fDistanceFromAnchorToSpreadBridgeStartPoint > fDistanceFromAnchorToCoveredBridgeStartPoint) //we exceeded the length of the bridge
+            if (fDistanceFromAnchorToSpreadBridgeStartPoint >= fDistanceFromAnchorToCoveredBridgeStartPoint) //we exceeded the length of the bridge
             {
+                Debug.Log("++++++++++HIT");
                 bStartPointReached = true;
                 m_startPoint = m_coveredBridge.m_startPoint;
             }
@@ -71,7 +74,7 @@ public class BridgeBehaviour : UVQuad
                 m_startPoint -= (director * dx);
 
 
-            if (fDistanceFromAnchorToSpreadBridgeEndPoint > fDistanceFromAnchorToCoveredBridgeEndPoint)
+            if (fDistanceFromAnchorToSpreadBridgeEndPoint >= fDistanceFromAnchorToCoveredBridgeEndPoint)
             {
                 bEndPointReached = true;
                 m_endPoint = m_coveredBridge.m_endPoint;
@@ -129,13 +132,9 @@ public class BridgeBehaviour : UVQuad
         m_spreadBridge = clonedObject.GetComponent<BridgeBehaviour>();
         m_spreadBridge.m_status = BridgeStatus.Spreading;
         m_spreadBridge.m_spreadAnchor = anchor;
-        //m_spreadBridge.m_coveredBridge = this;
-        //m_spreadBridge.m_spreadEndPoint = m_endPoint;
-        //m_spreadBridge.m_spreadStartPoint = m_startPoint;
+        m_spreadBridge.m_coveredBridge = this;
         m_spreadBridge.m_startPoint = anchor.Position;
         m_spreadBridge.m_endPoint = anchor.Position;
-
-        m_spreadBridge.m_coveredBridge = this;
     }
 
     public void NotifyAnchorsOfBridgeAddition(BridgeBehaviour bridge)

@@ -63,11 +63,12 @@ public class NodeTouchHandler : TouchHandler
                     this.transform.position = snapAnchor.Position;
 
                     List<BridgeBehaviour> anchorBridges = snapAnchor.Bridges;
-                    foreach (BridgeBehaviour anchorBridge in anchorBridges)
-                    {
-                        anchorBridge.SpreadAroundAnchorPoint(m_snappedAnchor);
-                        m_snappedAnchor.Linked = true; //this anchor became active
-                    }
+                    //foreach (BridgeBehaviour anchorBridge in anchorBridges)
+                    //{
+                    //    anchorBridge.SpreadAroundAnchorPoint(m_snappedAnchor);
+                    //    m_snappedAnchor.Linked = true; //this anchor became active
+                    //}
+                    anchorBridges[1].SpreadAroundAnchorPoint(m_snappedAnchor);
                     return true;
                 }
             }
