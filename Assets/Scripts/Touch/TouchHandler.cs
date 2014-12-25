@@ -50,41 +50,6 @@ public class TouchHandler : MonoBehaviour
     }
 
     /**
-     * Returns the coordinates of the mouse in screen coordinates.
-     * (0,0) are the coordinates of the center of the screen.
-     * **/
-    protected Vector2 GetMousePositionInScreenCoordinates()
-    {
-        Vector2 mouseRectRelativeCoordinates = GetMousePositionInWorldCoordinates();
-        Vector2 cameraPosition = Camera.main.transform.position;
-        Vector2 mouseWorldPosition = mouseRectRelativeCoordinates - cameraPosition; //the HUD canvas is centered in the screen, so offset the mouseWorld position by the camera position
-
-        return mouseWorldPosition;
-    }
-
-    /**
-     * Returns the coordinates of the mouse in world coordinates.
-     * **/
-    protected Vector2 GetMousePositionInWorldCoordinates()
-    {
-        Vector2 mousePosition = Input.mousePosition;
-        Vector2 mouseRectRelativeCoordinates = Camera.main.ScreenToWorldPoint(mousePosition);
-
-        return mouseRectRelativeCoordinates;
-    }
-
-    /**
-     * Returns the world position of a point in screen coordinates.
-     * **/
-    protected Vector2 GetScreenCoordinatesInWorldPoint(Vector2 screenCoords)
-    {
-        Vector2 cameraPosition = Camera.main.transform.position;
-        Vector2 worldPoint = screenCoords + cameraPosition;
-
-        return worldPoint;
-    }
-
-    /**
      * Handles the touches/click on nodes to drag them properly or on scene to slide it
      * -1 touch: drag a node or slide the scene
      * -2 touches: zoom in/out the scene
