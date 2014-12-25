@@ -60,27 +60,34 @@ public class BridgeBehaviour : UVQuad
             float fDistanceFromAnchorToCoveredBridgeStartPoint = (m_coveredBridge.m_startPoint - m_spreadAnchor.Position).magnitude;
             float fDistanceFromAnchorToCoveredBridgeEndPoint = (m_coveredBridge.m_endPoint - m_spreadAnchor.Position).magnitude;
 
-            Debug.Log("spreadingDistance:" + fDistanceFromAnchorToSpreadBridgeStartPoint + "targetDistance:" + fDistanceFromAnchorToCoveredBridgeStartPoint);
-
             bool bStartPointReached = false;
             bool bEndPointReached = false;
-            if (fDistanceFromAnchorToSpreadBridgeStartPoint >= fDistanceFromAnchorToCoveredBridgeStartPoint) //we exceeded the length of the bridge
-            {
-                Debug.Log("++++++++++HIT");
+            if (fDistanceFromAnchorToSpreadBridgeStartPoint == fDistanceFromAnchorToCoveredBridgeStartPoint) //bridge already hit the border
                 bStartPointReached = true;
-                m_startPoint = m_coveredBridge.m_startPoint;
-            }
             else
-                m_startPoint -= (director * dx);
-
-
-            if (fDistanceFromAnchorToSpreadBridgeEndPoint >= fDistanceFromAnchorToCoveredBridgeEndPoint)
             {
-                bEndPointReached = true;
-                m_endPoint = m_coveredBridge.m_endPoint;
+                if (fDistanceFromAnchorToSpreadBridgeStartPoint > fDistanceFromAnchorToCoveredBridgeStartPoint) //we exceeded the length of the bridge
+                {
+                    bStartPointReached = true;
+                    m_startPoint = m_coveredBridge.m_startPoint;
+                }
+                else
+                    m_startPoint -= (director * dx);
             }
+
+
+            if (fDistanceFromAnchorToSpreadBridgeEndPoint == fDistanceFromAnchorToCoveredBridgeEndPoint) //bridge already hit the border
+                bEndPointReached = true;
             else
-                m_endPoint += (director * dx);
+            {
+                if (fDistanceFromAnchorToSpreadBridgeEndPoint > fDistanceFromAnchorToCoveredBridgeEndPoint)
+                {
+                    bEndPointReached = true;
+                    m_endPoint = m_coveredBridge.m_endPoint;
+                }
+                else
+                    m_endPoint += (director * dx);
+            }
             
 
             if (bStartPointReached && bEndPointReached) //we finish building the spreading bridge
