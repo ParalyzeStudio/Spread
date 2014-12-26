@@ -12,7 +12,7 @@ public class UVQuad : MonoBehaviour
 
     protected virtual void Awake()
     {
-        m_prevTextureRange = m_textureRange;
+        m_prevTextureRange = new Vector4(0,0,0,0);
         m_prevTextureWrapMode = m_textureWrapMode;
     }
 

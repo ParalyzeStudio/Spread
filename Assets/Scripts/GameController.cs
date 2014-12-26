@@ -28,7 +28,11 @@ public class GameController : MonoBehaviour
 
 	void Update () 
     {
+        bool bGameEnded = CheckGameEnd();
+        if (bGameEnded)
+        {
 
+        }
 	}
 
     /**
@@ -47,11 +51,6 @@ public class GameController : MonoBehaviour
 
             for (int fadedBridgeIndex2 = fadedBridgeIndex1 + 1; fadedBridgeIndex2 != fadedBridges.Length; fadedBridgeIndex2++)
             {
-                if (fadedBridgeIndex1 == 0 && fadedBridgeIndex2 == 3)
-                {
-                    int a = 1;
-                }
-
                 GameObject fadedBridgeObject2 = fadedBridges[fadedBridgeIndex2];
 
                 BridgeBehaviour fadedBridge2 = fadedBridgeObject2.GetComponent<BridgeBehaviour>();
@@ -109,5 +108,10 @@ public class GameController : MonoBehaviour
                 return anchorIndex;
         }
         return -1;
+    }
+
+    bool CheckGameEnd()
+    {
+        return false;
     }
 }

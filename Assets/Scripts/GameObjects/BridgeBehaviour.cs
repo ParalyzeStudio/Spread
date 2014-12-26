@@ -50,6 +50,7 @@ public class BridgeBehaviour : UVQuad
         //handle the special case of a bridge that is currently spreading
         if (m_status == BridgeStatus.Spreading)
         {
+            //Check if the bridge spreading is done or increase its size otherwise
             float dx = BRIDGE_SPREADING_SPEED * dt;
 
             Vector2 director = (m_coveredBridge.m_endPoint - m_coveredBridge.m_startPoint);
@@ -88,9 +89,21 @@ public class BridgeBehaviour : UVQuad
                 else
                     m_endPoint += (director * dx);
             }
-            
 
-            if (bStartPointReached && bEndPointReached) //we finish building the spreading bridge
+            //Link every anchor that has been reached by this spreading bridge
+            foreach (GridAnchor anchor in m_coveredBridge.m_anchors)
+            {
+                Vector2 anchorPosition = anchor.Position;
+
+                if (!anchor.Linked && MathUtils.isLinePointContainedInSegment(anchorPosition, m_startPoint, m_endPoint))
+                {
+                    anchor.Linked = true;
+                    Debug.Log("ANCHOR LINKED");
+                }
+            }
+
+            //we finish building the spreading bridge
+            if (bStartPointReached && bEndPointReached) 
             {
                 m_status = BridgeStatus.Completed;
                 NotifyAnchorsOfBridgeAddition(this);

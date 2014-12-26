@@ -96,4 +96,19 @@ public class MathUtils
             intersection = Vector2.zero;
         }
     }
+
+    /**
+     * Check if a point that we know is on a line is also contained in a segment defined by pointA and pointB
+     * **/
+    static public bool isLinePointContainedInSegment(Vector2 point, Vector2 pointA, Vector2 pointB)
+    {
+        float minX = Mathf.Min(pointA.x, pointB.x);
+        float maxX = Mathf.Max(pointA.x, pointB.x);
+        float minY = Mathf.Min(pointA.y, pointB.y);
+        float maxY = Mathf.Max(pointA.y, pointB.y);
+
+        return ((point.x >= minX && point.x <= maxX)
+                &&
+                (point.y >= minY && point.y <= maxY));
+    }
 }

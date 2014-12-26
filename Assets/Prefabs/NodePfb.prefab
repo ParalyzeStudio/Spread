@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_touchArea: {x: 64, y: 64}
+  m_snapDistance: 25
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
