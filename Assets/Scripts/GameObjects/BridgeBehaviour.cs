@@ -20,9 +20,9 @@ public class BridgeBehaviour : UVQuad
     public Vector2 m_startPoint;
     public Vector2 m_endPoint;
     public GameObject m_solidBridgePrefab;
+    public BridgeStatus m_status;
     private BridgeBehaviour m_spreadBridge;
     private BridgeBehaviour m_coveredBridge;
-    public BridgeStatus m_status;
     private List<GridAnchor> m_anchors; //all anchors this bridge pass through
     private GridAnchor m_spreadAnchor;
 
@@ -196,4 +196,51 @@ public class BridgeBehaviour : UVQuad
             }
         }
     }
+
+    /**
+     * Retrieve closest anchors to parameter anchor and check if they are linked before returning them
+     * **/
+    public List<GridAnchor> GetNeighbouringLinkedAnchors(GridAnchor anchor)
+    {
+        List<GridAnchor> neighbouringLinkedAnchors = new List<GridAnchor>();
+        neighbouringLinkedAnchors.Capacity = 2; //at most 2 neighbouring anchors
+
+        //find the closest linked anchor on segment [anchor.Position; m_startPoint]
+        GridAnchor neighbouringLinkedAnchor = FindClosestAnchorOnSegment(anchor, m_startPoint);
+        if (neighbouringLinkedAnchor != null && neighbouringLinkedAnchor.Linked) //check if the closes anchor we found is linked
+            neighbouringLinkedAnchors.Add(neighbouringLinkedAnchor);
+
+        //do the same for the segment [anchor.Position; m_endPoint]
+        neighbouringLinkedAnchor = FindClosestAnchorOnSegment(anchor, m_endPoint);
+        if (neighbouringLinkedAnchor != null && neighbouringLinkedAnchor.Linked) //check if the closes anchor we found is linked
+            neighbouringLinkedAnchors.Add(neighbouringLinkedAnchor);
+
+        return neighbouringLinkedAnchors;
+    }
+
+    /**
+     * Returns the closest anchor on segment [anchor.Position; segmentEndPoint] or null if no one was found
+     * **/
+    private GridAnchor FindClosestAnchorOnSegment(GridAnchor anchor, Vector2 segmentEndPoint)
+    {
+        GridAnchor minDistanceAnchor = null;
+        float minDistance = int.MaxValue;
+        foreach (GridAnchor segmentAnchor in m_anchors)
+        {
+            if (segmentAnchor.Equals(anchor))
+                continue;
+
+            if (MathUtils.isLinePointContainedInSegment(segmentAnchor.Position, anchor.Position, segmentEndPoint))
+            {
+                float sqrDistanceToAnchor = (segmentAnchor.Position - anchor.Position).sqrMagnitude;
+                if (sqrDistanceToAnchor < minDistance)
+                {
+                    minDistanceAnchor = segmentAnchor;
+                    minDistance = sqrDistanceToAnchor;
+                }
+            }
+        }
+        return minDistanceAnchor;
+    }
 }
+

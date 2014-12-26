@@ -19,6 +19,9 @@ public class MathUtils
         return (pointB - pointA).sqrMagnitude < epsilon;
     }
 
+    /**
+     * Find the intersection of two segments if it exists
+     * **/
     static public void TwoSegmentsIntersection(Vector2 segment1Point1, Vector2 segment1Point2, Vector2 segment2Point1, Vector2 segment2Point2, out bool intersects, out Vector2 intersection)
     {
         //order points by ascending x
@@ -98,7 +101,7 @@ public class MathUtils
     }
 
     /**
-     * Check if a point that we know is on a line is also contained in a segment defined by pointA and pointB
+     * Checks if a point that we know is on a line is also contained in a segment defined by pointA and pointB
      * **/
     static public bool isLinePointContainedInSegment(Vector2 point, Vector2 pointA, Vector2 pointB)
     {
