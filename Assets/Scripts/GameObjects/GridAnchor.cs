@@ -8,25 +8,23 @@ using System.Collections.Generic;
  * **/
 public class GridAnchor
 {
-    //private List<BridgeBehaviour> m_bridges; //the bridges that intersect to produce this node
-    private Vector2 m_position; //the position of the node
-
     public List<BridgeBehaviour> Bridges {get; set;}
     public Vector2 Position { get; set; }
-    public bool Linked { get; set; } //is this grid anchor linked to the network and reachable by a node 
+    public bool isLinked { get; set; } //is this grid anchor linked to the network and reachable by a node 
+    public bool isSpread { get; set; } //did we spread around this anchor?
 
     public GridAnchor(Vector2 position)
     {
         Position = position;
         Bridges = new List<BridgeBehaviour>();
-        Linked = false;
+        isLinked = false;
     }
 
     public GridAnchor(Vector2 position, List<BridgeBehaviour> bridges)
     {
         Position = position;
         Bridges = bridges;
-        Linked = false;
+        isLinked = false;
     }
 
     /**
@@ -78,5 +76,19 @@ public class GridAnchor
         }
 
         return neighbouringLinkedNodes;
+    }
+
+    public void Spread()
+    {
+        if (!isSpread)
+        {
+            Debug.Log("Spread");
+            foreach (BridgeBehaviour bridge in Bridges)
+            {
+                bridge.SpreadAroundAnchorPoint(this);
+            }
+
+            this.isSpread = true;
+        }
     }
 }

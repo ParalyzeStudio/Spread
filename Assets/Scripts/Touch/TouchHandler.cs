@@ -10,8 +10,8 @@ public class TouchHandler : MonoBehaviour
     public const float MOVE_EPSILON = 0.5f;
 
     public Vector2 m_touchArea;
-    private bool m_selected;
-    private Vector2 m_prevPointerLocation;
+    protected bool m_selected;
+    protected Vector2 m_prevPointerLocation;
 
     public virtual void Start()
     {

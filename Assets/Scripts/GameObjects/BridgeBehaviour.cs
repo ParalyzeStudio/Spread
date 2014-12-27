@@ -95,9 +95,10 @@ public class BridgeBehaviour : UVQuad
             {
                 Vector2 anchorPosition = anchor.Position;
 
-                if (!anchor.Linked && MathUtils.isLinePointContainedInSegment(anchorPosition, m_startPoint, m_endPoint))
+                if (!anchor.isLinked && MathUtils.isLinePointContainedInSegment(anchorPosition, m_startPoint, m_endPoint))
                 {
-                    anchor.Linked = true;
+                    PushAnchor(anchor);
+                    anchor.isLinked = true;
                     Debug.Log("ANCHOR LINKED");
                 }
             }
@@ -107,7 +108,7 @@ public class BridgeBehaviour : UVQuad
             {
                 m_status = BridgeStatus.Completed;
                 NotifyAnchorsOfBridgeAddition(this);
-                NotifyAnchorsOfBridgeRemoval();
+                NotifyAnchorsOfBridgeRemoval(m_coveredBridge);
                 Destroy(m_coveredBridge.gameObject);
                 this.transform.position = new Vector3(transform.position.x, transform.position.y, SOLID_BRIDGE_Z_VALUE);
             }
@@ -148,13 +149,14 @@ public class BridgeBehaviour : UVQuad
         GameObject clonedObject = (GameObject)Instantiate(m_solidBridgePrefab, spreadBridgePosition, this.transform.rotation);
         Transform transform = clonedObject.GetComponent<Transform>();
         transform.localScale = new Vector3(0.0f, transform.localScale.y, transform.localScale.z);
-        //BridgeBehaviour spreadBridgeScript = m_spreadBridge.GetComponent<BridgeBehaviour>();
         m_spreadBridge = clonedObject.GetComponent<BridgeBehaviour>();
         m_spreadBridge.m_status = BridgeStatus.Spreading;
         m_spreadBridge.m_spreadAnchor = anchor;
         m_spreadBridge.m_coveredBridge = this;
         m_spreadBridge.m_startPoint = anchor.Position;
         m_spreadBridge.m_endPoint = anchor.Position;
+        m_spreadBridge.PushAnchor(anchor);
+        anchor.isLinked = true;
     }
 
     public void NotifyAnchorsOfBridgeAddition(BridgeBehaviour bridge)
@@ -165,11 +167,11 @@ public class BridgeBehaviour : UVQuad
         }
     }
 
-    public void NotifyAnchorsOfBridgeRemoval()
+    public void NotifyAnchorsOfBridgeRemoval(BridgeBehaviour bridge)
     {
         for (int anchorIndex = 0; anchorIndex != m_anchors.Count; anchorIndex++)
         {
-            m_anchors[anchorIndex].RemoveBridge(this);
+            m_anchors[anchorIndex].RemoveBridge(bridge);
         }
     }
 
@@ -207,12 +209,12 @@ public class BridgeBehaviour : UVQuad
 
         //find the closest linked anchor on segment [anchor.Position; m_startPoint]
         GridAnchor neighbouringLinkedAnchor = FindClosestAnchorOnSegment(anchor, m_startPoint);
-        if (neighbouringLinkedAnchor != null && neighbouringLinkedAnchor.Linked) //check if the closes anchor we found is linked
+        if (neighbouringLinkedAnchor != null && neighbouringLinkedAnchor.isLinked) //check if the closes anchor we found is linked
             neighbouringLinkedAnchors.Add(neighbouringLinkedAnchor);
 
         //do the same for the segment [anchor.Position; m_endPoint]
         neighbouringLinkedAnchor = FindClosestAnchorOnSegment(anchor, m_endPoint);
-        if (neighbouringLinkedAnchor != null && neighbouringLinkedAnchor.Linked) //check if the closes anchor we found is linked
+        if (neighbouringLinkedAnchor != null && neighbouringLinkedAnchor.isLinked) //check if the closes anchor we found is linked
             neighbouringLinkedAnchors.Add(neighbouringLinkedAnchor);
 
         return neighbouringLinkedAnchors;
