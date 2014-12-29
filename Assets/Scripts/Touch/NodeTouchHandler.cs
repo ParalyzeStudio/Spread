@@ -27,11 +27,14 @@ public class NodeTouchHandler : TouchHandler
         if (!base.OnPointerMove(pointerLocation, ref delta))
             return false;
 
-        if (m_attachedAnchor != null)
+        if (m_attachedAnchor == null) //node can move freely (i.e it has been dragged from GUI item list)
         {
             bool bSnap = SnapToClosestAnchor();
             if (m_snappedAnchor != null)
-                TryToUnsnap();
+            {
+                if (!bSnap) //we don't try to unsnap if we just snap to an anchor
+                    TryToUnsnap();
+            }
             else
             {
                 Vector3 deltaVec3 = delta;

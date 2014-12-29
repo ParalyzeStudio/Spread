@@ -19,6 +19,7 @@ public class GridAnchor
         Position = position;
         Bridges = new List<BridgeBehaviour>();
         isLinked = false;
+        NeighbouringAnchors = new List<GridAnchor>();
     }
 
     public GridAnchor(Vector2 position, List<BridgeBehaviour> bridges)
@@ -26,6 +27,7 @@ public class GridAnchor
         Position = position;
         Bridges = bridges;
         isLinked = false;
+        NeighbouringAnchors = new List<GridAnchor>();
     }
 
     /**
