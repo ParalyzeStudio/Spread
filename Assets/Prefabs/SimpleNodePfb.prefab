@@ -11,8 +11,6 @@ GameObject:
   - 33: {fileID: 3322068}
   - 23: {fileID: 2322068}
   - 114: {fileID: 11454160}
-  - 114: {fileID: 11422068}
-  - 114: {fileID: 11422070}
   m_Layer: 0
   m_Name: SimpleNodePfb
   m_TagString: SimpleNode
@@ -59,31 +57,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 122068}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &11422068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 122068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12bcf963bb9fcd64393510f718675e20, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_textureRange: {x: 0, y: 0, z: 1, w: 1}
-  m_textureWrapMode: 0
---- !u!114 &11422070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 122068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d65a74bb4cca0e41bd8e1fdb0c69842, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_touchArea: {x: 64, y: 64}
 --- !u!114 &11454160
 MonoBehaviour:
   m_ObjectHideFlags: 1

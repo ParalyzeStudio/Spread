@@ -27,67 +27,83 @@ public class NodeTouchHandler : TouchHandler
         if (!base.OnPointerMove(pointerLocation, ref delta))
             return false;
 
-        if (m_snappedAnchor == null)
+        if (m_attachedAnchor != null)
         {
             bool bSnap = SnapToClosestAnchor();
-            if (bSnap)
-                Debug.Log("SNAP");
-            if (bSnap && m_snappedAnchor == m_attachedAnchor) //we snapped to the attached anchor, reset the targetAnchor for fresh start
+            if (m_snappedAnchor != null)
+                TryToUnsnap();
+            else
             {
-                
-                m_targetAnchor = null;
+                Vector3 deltaVec3 = delta;
+                this.transform.position += deltaVec3;
             }
         }
         else
         {
-            //if we are far enough from the snapped anchor try to detach the node from it
-            TryToUnsnap();
 
-            //we head for a certain target anchor if not set and the node is snapped to an anchor (i.e not moving on bridge)
-            if (m_snappedAnchor != null && m_targetAnchor == null)
-            {
-                List<GridAnchor> neighbouringLinkedAnchors = m_snappedAnchor.FindNeighbouringLinkedAnchors();
-                //find the direction where to drag the node based on the value of the dot product of normalized delta and direction of a neighbouring anchor
-                //the max value of this product (i.e smallest angle between vectors) determines the anchor we have to head for
-                Vector2 normalizedDelta = delta;
-                normalizedDelta.Normalize();
-
-                float maxDotProduct = int.MinValue;
-                foreach (GridAnchor neighbouringLinkedAnchor in neighbouringLinkedAnchors)
-                {
-                    Vector2 anchorDirection = (neighbouringLinkedAnchor.Position - m_snappedAnchor.Position);
-                    anchorDirection.Normalize();
-                    float dotProduct = Vector2.Dot(normalizedDelta, anchorDirection);
-                    if (dotProduct > maxDotProduct)
-                    {
-                        maxDotProduct = dotProduct;
-                        m_targetAnchor = neighbouringLinkedAnchor;
-                    }
-                }
-            }
         }
 
-        //finally move the node
-        //if we head for a target anchor, calculate the projection of the delta vector onto the segment [m_attachedAnchor;m_targetAnchor]
-        if (m_attachedAnchor != null)
-        {
-            if (m_targetAnchor != null && m_snappedAnchor == null)
-            {
-                Vector2 targetAnchorDirection = (m_targetAnchor.Position - m_attachedAnchor.Position);
-                targetAnchorDirection.Normalize();
-                float fDeltaProjection = Vector2.Dot(delta, targetAnchorDirection);
-                delta = targetAnchorDirection * fDeltaProjection;
-            }
-            else
-                delta = Vector2.zero;
-        }
-        else if (m_snappedAnchor != null)
-        {
-            delta = Vector2.zero;
-        }
-        Vector3 deltaVec3 = delta;
+        //if (m_snappedAnchor == null)
+        //{
+        //    bool bSnap = SnapToClosestAnchor();
+        //    if (bSnap)
+        //        Debug.Log("SNAP");
+        //    if (bSnap && m_snappedAnchor == m_attachedAnchor) //we snapped to the attached anchor, reset the targetAnchor for fresh start
+        //    {
+                
+        //        m_targetAnchor = null;
+        //    }
+        //}
+        //else
+        //{
+        //    //if we are far enough from the snapped anchor try to detach the node from it
+        //    TryToUnsnap();
 
-        this.transform.position += deltaVec3;
+        //    //we head for a certain target anchor if not set and the node is snapped to an anchor (i.e not moving on bridge)
+        //    if (m_snappedAnchor != null && m_targetAnchor == null)
+        //    {
+        //        List<GridAnchor> neighbouringLinkedAnchors = m_snappedAnchor.FindNeighbouringLinkedAnchors();
+        //        //find the direction where to drag the node based on the value of the dot product of normalized delta and direction of a neighbouring anchor
+        //        //the max value of this product (i.e smallest angle between vectors) determines the anchor we have to head for
+        //        Vector2 normalizedDelta = delta;
+        //        normalizedDelta.Normalize();
+
+        //        float maxDotProduct = int.MinValue;
+        //        foreach (GridAnchor neighbouringLinkedAnchor in neighbouringLinkedAnchors)
+        //        {
+        //            Vector2 anchorDirection = (neighbouringLinkedAnchor.Position - m_snappedAnchor.Position);
+        //            anchorDirection.Normalize();
+        //            float dotProduct = Vector2.Dot(normalizedDelta, anchorDirection);
+        //            if (dotProduct > maxDotProduct)
+        //            {
+        //                maxDotProduct = dotProduct;
+        //                m_targetAnchor = neighbouringLinkedAnchor;
+        //            }
+        //        }
+        //    }
+        //}
+
+        ////finally move the node
+        ////if we head for a target anchor, calculate the projection of the delta vector onto the segment [m_attachedAnchor;m_targetAnchor]
+        //if (m_attachedAnchor != null)
+        //{
+        //    if (m_targetAnchor != null && m_snappedAnchor == null)
+        //    {
+        //        Vector2 targetAnchorDirection = (m_targetAnchor.Position - m_attachedAnchor.Position);
+        //        targetAnchorDirection.Normalize();
+        //        float fDeltaProjection = Vector2.Dot(delta, targetAnchorDirection);
+        //        delta = targetAnchorDirection * fDeltaProjection;
+        //    }
+        //    else
+        //        delta = Vector2.zero;
+        //}
+        //else if (m_snappedAnchor != null)
+        //{
+        //    delta = Vector2.zero;
+        //}
+        //Vector3 deltaVec3 = delta;
+
+        //this.transform.position += deltaVec3;
 
         return true;
     }
@@ -169,6 +185,28 @@ public class NodeTouchHandler : TouchHandler
                 this.transform.position = mouseWorldPosition;
             }
             m_snappedAnchor = null;
+        }
+    }
+
+    private void FindTargetAnchor(Vector2 pointerMoveDelta)
+    {
+        List<GridAnchor> neighbouringAnchors = m_snappedAnchor.NeighbouringAnchors;
+        //find the direction where to drag the node based on the value of the dot product of normalized delta and direction of a neighbouring anchor
+        //the max value of this product (i.e smallest angle between vectors) determines the anchor we have to head for
+        Vector2 normalizedDelta = pointerMoveDelta;
+        normalizedDelta.Normalize();
+
+        float maxDotProduct = int.MinValue;
+        foreach (GridAnchor neighbouringLinkedAnchor in neighbouringAnchors)
+        {
+            Vector2 anchorDirection = (neighbouringLinkedAnchor.Position - m_snappedAnchor.Position);
+            anchorDirection.Normalize();
+            float dotProduct = Vector2.Dot(normalizedDelta, anchorDirection);
+            if (dotProduct > maxDotProduct)
+            {
+                maxDotProduct = dotProduct;
+                m_targetAnchor = neighbouringLinkedAnchor;
+            }
         }
     }
 }

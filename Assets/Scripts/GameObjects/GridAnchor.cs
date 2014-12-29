@@ -12,6 +12,7 @@ public class GridAnchor
     public Vector2 Position { get; set; }
     public bool isLinked { get; set; } //is this grid anchor linked to the network and reachable by a node 
     public bool isSpread { get; set; } //did we spread around this anchor?
+    public List<GridAnchor> NeighbouringAnchors {get; set;}
 
     public GridAnchor(Vector2 position)
     {
@@ -59,33 +60,48 @@ public class GridAnchor
         }
     }
 
-    /**
-     * Retrieves the list of linked anchors that are directly neighbors of this anchor
-     * **/
-    public List<GridAnchor> FindNeighbouringLinkedAnchors()
-    {
-        List<GridAnchor> neighbouringLinkedNodes = new List<GridAnchor>();
+    ///**
+    // * Retrieves the list of linked anchors that are directly neighbors of this anchor
+    // * **/
+    //public List<GridAnchor> FindNeighbouringLinkedAnchors()
+    //{
+    //    List<GridAnchor> neighbouringLinkedAnchors = new List<GridAnchor>();
 
+    //    foreach (BridgeBehaviour bridge in Bridges)
+    //    {
+    //        if (bridge.m_status == BridgeBehaviour.BridgeStatus.Completed)
+    //        {
+    //            List<GridAnchor> neighbouringLinkedNodesOnBridge = bridge.GetNeighbouringLinkedAnchors(this);
+    //            neighbouringLinkedAnchors.AddRange(neighbouringLinkedNodesOnBridge);
+    //        }
+    //    }
+
+    //    return neighbouringLinkedAnchors;
+    //}
+
+    /**
+    * Retrieves the list of linked anchors that are directly neighbors of this anchor and cache them
+    * **/
+    public void InitNeighbouringAnchors()
+    {
         foreach (BridgeBehaviour bridge in Bridges)
         {
-            if (bridge.m_status == BridgeBehaviour.BridgeStatus.Completed)
-            {
-                List<GridAnchor> neighbouringLinkedNodesOnBridge = bridge.GetNeighbouringLinkedAnchors(this);
-                neighbouringLinkedNodes.AddRange(neighbouringLinkedNodesOnBridge);
-            }
+            List<GridAnchor> neighbouringAnchorsOnBridge = bridge.GetNeighbouringAnchors(this);
+            NeighbouringAnchors.AddRange(neighbouringAnchorsOnBridge);
         }
-
-        return neighbouringLinkedNodes;
     }
 
+    /*
+     * Spread around this bridge in all possible directions
+     * **/
     public void Spread()
     {
         if (!isSpread)
         {
-            Debug.Log("Spread");
             foreach (BridgeBehaviour bridge in Bridges)
             {
-                bridge.SpreadAroundAnchorPoint(this);
+                if (bridge.m_status == BridgeBehaviour.BridgeStatus.Faded) //don't spread on bridges that are done or already spreading
+                    bridge.SpreadAroundAnchorPoint(this);
             }
 
             this.isSpread = true;

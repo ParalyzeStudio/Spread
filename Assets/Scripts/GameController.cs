@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour
 	void Start () 
     {
         ObtainAnchors();
+        CacheNeighbouringAnchors();
 	}
 
 	void Update () 
@@ -77,6 +78,17 @@ public class GameController : MonoBehaviour
                     fadedBridge2.PushAnchor(anchor);
                 }
             }
+        }
+    }
+
+    /**
+     * Cache the neighbouring anchors for each anchor that has been obtained in the ObtainAnchors() function
+     * **/
+    private void CacheNeighbouringAnchors()
+    {
+        foreach (GridAnchor anchor in m_anchors)
+        {
+            anchor.InitNeighbouringAnchors();
         }
     }
 

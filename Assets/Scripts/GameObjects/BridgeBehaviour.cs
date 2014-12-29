@@ -200,25 +200,46 @@ public class BridgeBehaviour : UVQuad
     }
 
     /**
-     * Retrieve closest anchors to parameter anchor and check if they are linked before returning them
+     * Retrieve closest anchors to parameter anchor on this bridge (at most 2 anchors)
      * **/
-    public List<GridAnchor> GetNeighbouringLinkedAnchors(GridAnchor anchor)
+    public List<GridAnchor> GetNeighbouringAnchors(GridAnchor anchor)
     {
-        List<GridAnchor> neighbouringLinkedAnchors = new List<GridAnchor>();
-        neighbouringLinkedAnchors.Capacity = 2; //at most 2 neighbouring anchors
+        List<GridAnchor> neighbouringAnchors = new List<GridAnchor>();
+        neighbouringAnchors.Capacity = 2; //at most 2 neighbouring anchors
 
         //find the closest linked anchor on segment [anchor.Position; m_startPoint]
         GridAnchor neighbouringLinkedAnchor = FindClosestAnchorOnSegment(anchor, m_startPoint);
-        if (neighbouringLinkedAnchor != null && neighbouringLinkedAnchor.isLinked) //check if the closes anchor we found is linked
-            neighbouringLinkedAnchors.Add(neighbouringLinkedAnchor);
+        if (neighbouringLinkedAnchor != null)
+            neighbouringAnchors.Add(neighbouringLinkedAnchor);
 
         //do the same for the segment [anchor.Position; m_endPoint]
         neighbouringLinkedAnchor = FindClosestAnchorOnSegment(anchor, m_endPoint);
-        if (neighbouringLinkedAnchor != null && neighbouringLinkedAnchor.isLinked) //check if the closes anchor we found is linked
-            neighbouringLinkedAnchors.Add(neighbouringLinkedAnchor);
+        if (neighbouringLinkedAnchor != null)
+            neighbouringAnchors.Add(neighbouringLinkedAnchor);
 
-        return neighbouringLinkedAnchors;
+        return neighbouringAnchors;
     }
+
+    ///**
+    // * Retrieve closest anchors to parameter anchor and check if they are linked before returning them
+    // * **/
+    //public List<GridAnchor> GetNeighbouringLinkedAnchors(GridAnchor anchor)
+    //{
+    //    List<GridAnchor> neighbouringLinkedAnchors = new List<GridAnchor>();
+    //    neighbouringLinkedAnchors.Capacity = 2; //at most 2 neighbouring anchors
+
+    //    //find the closest linked anchor on segment [anchor.Position; m_startPoint]
+    //    GridAnchor neighbouringLinkedAnchor = FindClosestAnchorOnSegment(anchor, m_startPoint);
+    //    if (neighbouringLinkedAnchor != null && neighbouringLinkedAnchor.isLinked) //check if the closes anchor we found is linked
+    //        neighbouringLinkedAnchors.Add(neighbouringLinkedAnchor);
+
+    //    //do the same for the segment [anchor.Position; m_endPoint]
+    //    neighbouringLinkedAnchor = FindClosestAnchorOnSegment(anchor, m_endPoint);
+    //    if (neighbouringLinkedAnchor != null && neighbouringLinkedAnchor.isLinked) //check if the closes anchor we found is linked
+    //        neighbouringLinkedAnchors.Add(neighbouringLinkedAnchor);
+
+    //    return neighbouringLinkedAnchors;
+    //}
 
     /**
      * Returns the closest anchor on segment [anchor.Position; segmentEndPoint] or null if no one was found
