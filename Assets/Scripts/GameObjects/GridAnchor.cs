@@ -94,7 +94,7 @@ public class GridAnchor
     }
 
     /*
-     * Spread around this bridge in all possible directions
+     * Spread around this anchor in all possible directions
      * **/
     public void Spread()
     {
