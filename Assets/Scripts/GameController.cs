@@ -44,21 +44,21 @@ public class GameController : MonoBehaviour
     {
         m_anchors = new List<GridAnchor>();
 
-        GameObject[] fadedBridges = GameObject.FindGameObjectsWithTag("FadedBridge");
-        for (int fadedBridgeIndex1 = 0; fadedBridgeIndex1 != fadedBridges.Length; fadedBridgeIndex1++)
+        GameObject[] allBridges = GetAllBridges();
+        for (int fadedBridgeIndex1 = 0; fadedBridgeIndex1 != allBridges.Length; fadedBridgeIndex1++)
         {
-            GameObject fadedBridgeObject1 = fadedBridges[fadedBridgeIndex1];
-            BridgeBehaviour fadedBridge1 = fadedBridgeObject1.GetComponent<BridgeBehaviour>();
+            GameObject bridgeObject1 = allBridges[fadedBridgeIndex1];
+            BridgeBehaviour bridge1 = bridgeObject1.GetComponent<BridgeBehaviour>();
 
-            for (int fadedBridgeIndex2 = fadedBridgeIndex1 + 1; fadedBridgeIndex2 != fadedBridges.Length; fadedBridgeIndex2++)
+            for (int bridgeIndex2 = fadedBridgeIndex1 + 1; bridgeIndex2 != allBridges.Length; bridgeIndex2++)
             {
-                GameObject fadedBridgeObject2 = fadedBridges[fadedBridgeIndex2];
+                GameObject bridgeObject2 = allBridges[bridgeIndex2];
 
-                BridgeBehaviour fadedBridge2 = fadedBridgeObject2.GetComponent<BridgeBehaviour>();
+                BridgeBehaviour bridge2 = bridgeObject2.GetComponent<BridgeBehaviour>();
                 bool bIntersect;
                 Vector2 intersection;
-                MathUtils.TwoSegmentsIntersection(fadedBridge1.m_startPoint, fadedBridge1.m_endPoint,
-                                                  fadedBridge2.m_startPoint, fadedBridge2.m_endPoint,
+                MathUtils.TwoSegmentsIntersection(bridge1.m_startPoint, bridge1.m_endPoint,
+                                                  bridge2.m_startPoint, bridge2.m_endPoint,
                                                   out bIntersect, out intersection);
 
                 if (bIntersect)
@@ -72,15 +72,29 @@ public class GameController : MonoBehaviour
                         anchor = new GridAnchor(intersection);
                         m_anchors.Add(anchor);
                     }
-                    anchor.PushBridge(fadedBridge1);
-                    anchor.PushBridge(fadedBridge2);
-                    fadedBridge1.PushAnchor(anchor);
-                    fadedBridge2.PushAnchor(anchor);
+                    anchor.PushBridge(bridge1);
+                    anchor.PushBridge(bridge2);
+                    bridge1.PushAnchor(anchor);
+                    bridge2.PushAnchor(anchor);
                 }
             }
         }
     }
 
+    /**
+     * Quick method to get all bridges in the scene
+     * **/
+    private GameObject[] GetAllBridges()
+    {
+        GameObject[] solidBridges = GameObject.FindGameObjectsWithTag("SolidBridge");
+        GameObject[] fadedBridges = GameObject.FindGameObjectsWithTag("FadedBridge");
+        GameObject[] allBridges = new GameObject[solidBridges.Length + fadedBridges.Length];
+        solidBridges.CopyTo(allBridges, 0);
+        fadedBridges.CopyTo(allBridges, solidBridges.Length);
+
+        return allBridges;
+    }
+    
     /**
      * Cache the neighbouring anchors for each anchor that has been obtained in the ObtainAnchors() function
      * **/

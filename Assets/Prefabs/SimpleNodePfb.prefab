@@ -11,6 +11,7 @@ GameObject:
   - 33: {fileID: 3322068}
   - 23: {fileID: 2322068}
   - 114: {fileID: 11454160}
+  - 114: {fileID: 11426824}
   m_Layer: 0
   m_Name: SimpleNodePfb
   m_TagString: SimpleNode
@@ -57,6 +58,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 122068}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &11426824
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 122068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 301e2aee0c09db84f8add983500dab8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_simpleNodePrefab: {fileID: 122068}
 --- !u!114 &11454160
 MonoBehaviour:
   m_ObjectHideFlags: 1
