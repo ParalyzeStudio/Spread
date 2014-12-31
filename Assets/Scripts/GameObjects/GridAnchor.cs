@@ -8,26 +8,26 @@ using System.Collections.Generic;
  * **/
 public class GridAnchor
 {
-    public List<BridgeBehaviour> Bridges {get; set;}
-    public Vector2 Position { get; set; }
-    public bool isLinked { get; set; } //is this grid anchor linked to the network and reachable by a node 
-    public bool isSpread { get; set; } //did we spread around this anchor?
-    public List<GridAnchor> NeighbouringAnchors {get; set;}
+    public List<BridgeBehaviour> m_bridges {get; set;}
+    public Vector2 m_position { get; set; }
+    public bool m_linked { get; set; } //is this grid anchor linked to the network and reachable by a node 
+    public bool m_spread { get; set; } //did we spread around this anchor?
+    public List<GridAnchor> m_neighbouringAnchors {get; set;}
 
     public GridAnchor(Vector2 position)
     {
-        Position = position;
-        Bridges = new List<BridgeBehaviour>();
-        isLinked = false;
-        NeighbouringAnchors = new List<GridAnchor>();
+        m_position = position;
+        m_bridges = new List<BridgeBehaviour>();
+        m_linked = false;
+        m_neighbouringAnchors = new List<GridAnchor>();
     }
 
     public GridAnchor(Vector2 position, List<BridgeBehaviour> bridges)
     {
-        Position = position;
-        Bridges = bridges;
-        isLinked = false;
-        NeighbouringAnchors = new List<GridAnchor>();
+        m_position = position;
+        m_bridges = bridges;
+        m_linked = false;
+        m_neighbouringAnchors = new List<GridAnchor>();
     }
 
     /**
@@ -36,13 +36,13 @@ public class GridAnchor
     public void PushBridge(BridgeBehaviour bridge)
     {
         //check if bridge is not already in this List 
-        for (int bridgeIndex = 0; bridgeIndex != Bridges.Count; bridgeIndex++)
+        for (int bridgeIndex = 0; bridgeIndex != m_bridges.Count; bridgeIndex++)
         {
-            if (Bridges[bridgeIndex].Equals(bridge))
+            if (m_bridges[bridgeIndex].Equals(bridge))
                 return;
         }
 
-        Bridges.Add(bridge);
+        m_bridges.Add(bridge);
     }
 
 
@@ -52,11 +52,11 @@ public class GridAnchor
     public void RemoveBridge(BridgeBehaviour bridge)
     {
         //check if bridge is not already in this List 
-        for (int bridgeIndex = 0; bridgeIndex != Bridges.Count; bridgeIndex++)
+        for (int bridgeIndex = 0; bridgeIndex != m_bridges.Count; bridgeIndex++)
         {
-            if (Bridges[bridgeIndex].Equals(bridge))
+            if (m_bridges[bridgeIndex].Equals(bridge))
             {
-                Bridges.Remove(bridge);
+                m_bridges.Remove(bridge);
                 return;
             }
         }
@@ -86,10 +86,10 @@ public class GridAnchor
     * **/
     public void InitNeighbouringAnchors()
     {
-        foreach (BridgeBehaviour bridge in Bridges)
+        foreach (BridgeBehaviour bridge in m_bridges)
         {
             List<GridAnchor> neighbouringAnchorsOnBridge = bridge.GetNeighbouringAnchors(this);
-            NeighbouringAnchors.AddRange(neighbouringAnchorsOnBridge);
+            m_neighbouringAnchors.AddRange(neighbouringAnchorsOnBridge);
         }
     }
 
@@ -98,15 +98,15 @@ public class GridAnchor
      * **/
     public void Spread()
     {
-        if (!isSpread)
+        if (!m_spread)
         {
-            foreach (BridgeBehaviour bridge in Bridges)
+            foreach (BridgeBehaviour bridge in m_bridges)
             {
                 if (bridge.m_status == BridgeBehaviour.BridgeStatus.Faded) //don't spread on bridges that are done or already spreading
                     bridge.SpreadAroundAnchorPoint(this);
             }
 
-            this.isSpread = true;
+            this.m_spread = true;
         }
     }
 }

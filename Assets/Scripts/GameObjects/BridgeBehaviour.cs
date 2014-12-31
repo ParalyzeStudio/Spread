@@ -56,10 +56,10 @@ public class BridgeBehaviour : UVQuad
             Vector2 director = (m_coveredBridge.m_endPoint - m_coveredBridge.m_startPoint);
             director.Normalize();
 
-            float fDistanceFromAnchorToSpreadBridgeStartPoint = (m_startPoint - m_spreadAnchor.Position).magnitude;
-            float fDistanceFromAnchorToSpreadBridgeEndPoint = (m_endPoint - m_spreadAnchor.Position).magnitude;
-            float fDistanceFromAnchorToCoveredBridgeStartPoint = (m_coveredBridge.m_startPoint - m_spreadAnchor.Position).magnitude;
-            float fDistanceFromAnchorToCoveredBridgeEndPoint = (m_coveredBridge.m_endPoint - m_spreadAnchor.Position).magnitude;
+            float fDistanceFromAnchorToSpreadBridgeStartPoint = (m_startPoint - m_spreadAnchor.m_position).magnitude;
+            float fDistanceFromAnchorToSpreadBridgeEndPoint = (m_endPoint - m_spreadAnchor.m_position).magnitude;
+            float fDistanceFromAnchorToCoveredBridgeStartPoint = (m_coveredBridge.m_startPoint - m_spreadAnchor.m_position).magnitude;
+            float fDistanceFromAnchorToCoveredBridgeEndPoint = (m_coveredBridge.m_endPoint - m_spreadAnchor.m_position).magnitude;
 
             bool bStartPointReached = false;
             bool bEndPointReached = false;
@@ -93,13 +93,12 @@ public class BridgeBehaviour : UVQuad
             //Link every anchor that has been reached by this spreading bridge
             foreach (GridAnchor anchor in m_coveredBridge.m_anchors)
             {
-                Vector2 anchorPosition = anchor.Position;
+                Vector2 anchorPosition = anchor.m_position;
 
-                if (!anchor.isLinked && MathUtils.isLinePointContainedInSegment(anchorPosition, m_startPoint, m_endPoint))
+                if (!anchor.m_linked && MathUtils.isLinePointContainedInSegment(anchorPosition, m_startPoint, m_endPoint))
                 {
                     PushAnchor(anchor);
-                    anchor.isLinked = true;
-                    Debug.Log("ANCHOR LINKED");
+                    anchor.m_linked = true;
                 }
             }
 
@@ -143,7 +142,7 @@ public class BridgeBehaviour : UVQuad
      * **/
     public void SpreadAroundAnchorPoint(GridAnchor anchor)
     {
-        Vector3 spreadBridgePosition = anchor.Position;
+        Vector3 spreadBridgePosition = anchor.m_position;
         spreadBridgePosition.z = -150.0f;
 
         GameObject clonedObject = (GameObject)Instantiate(m_solidBridgePrefab, spreadBridgePosition, this.transform.rotation);
@@ -153,10 +152,10 @@ public class BridgeBehaviour : UVQuad
         m_spreadBridge.m_status = BridgeStatus.Spreading;
         m_spreadBridge.m_spreadAnchor = anchor;
         m_spreadBridge.m_coveredBridge = this;
-        m_spreadBridge.m_startPoint = anchor.Position;
-        m_spreadBridge.m_endPoint = anchor.Position;
+        m_spreadBridge.m_startPoint = anchor.m_position;
+        m_spreadBridge.m_endPoint = anchor.m_position;
         m_spreadBridge.PushAnchor(anchor);
-        anchor.isLinked = true;
+        anchor.m_linked = true;
     }
 
     public void NotifyAnchorsOfBridgeAddition(BridgeBehaviour bridge)
@@ -253,9 +252,9 @@ public class BridgeBehaviour : UVQuad
             if (segmentAnchor.Equals(anchor))
                 continue;
 
-            if (MathUtils.isLinePointContainedInSegment(segmentAnchor.Position, anchor.Position, segmentEndPoint))
+            if (MathUtils.isLinePointContainedInSegment(segmentAnchor.m_position, anchor.m_position, segmentEndPoint))
             {
-                float sqrDistanceToAnchor = (segmentAnchor.Position - anchor.Position).sqrMagnitude;
+                float sqrDistanceToAnchor = (segmentAnchor.m_position - anchor.m_position).sqrMagnitude;
                 if (sqrDistanceToAnchor < minDistance)
                 {
                     minDistanceAnchor = segmentAnchor;

@@ -115,7 +115,7 @@ public class GameController : MonoBehaviour
         for (int anchorIndex = 0; anchorIndex != m_anchors.Count; anchorIndex++)
         {
             GridAnchor anchorAtIndex = m_anchors[anchorIndex];
-            if (MathUtils.ArePointsEqual(anchor.Position, anchorAtIndex.Position))
+            if (MathUtils.ArePointsEqual(anchor.m_position, anchorAtIndex.m_position))
                 return anchorIndex;
         }
         return -1;
@@ -130,7 +130,7 @@ public class GameController : MonoBehaviour
         for (int anchorIndex = 0; anchorIndex != m_anchors.Count; anchorIndex++)
         {
             GridAnchor anchorAtIndex = m_anchors[anchorIndex];
-            if (MathUtils.ArePointsEqual(position, anchorAtIndex.Position))
+            if (MathUtils.ArePointsEqual(position, anchorAtIndex.m_position))
                 return anchorIndex;
         }
         return -1;
