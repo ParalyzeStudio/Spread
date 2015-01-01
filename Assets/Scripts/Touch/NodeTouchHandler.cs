@@ -155,7 +155,7 @@ public class NodeTouchHandler : TouchHandler
      * **/
     bool SnapToClosestAnchor()
     {
-        List<GridAnchor> allAnchors = m_gameController.Anchors;
+        List<GridAnchor> allAnchors = m_gameController.m_anchors;
 
         for (int anchorIndex = 0; anchorIndex != allAnchors.Count; anchorIndex++)
         {

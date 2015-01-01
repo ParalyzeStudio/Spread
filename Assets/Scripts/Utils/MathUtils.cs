@@ -86,9 +86,9 @@ public class MathUtils
 
 
         //Check if (x, y) point is contained in both segments
-        if (x >= segment1Point1.x && x <= segment1Point2.x
+        if (((x > segment1Point1.x && x < segment1Point2.x) || AreFloatsEqual(x, segment1Point1.x) || AreFloatsEqual(x, segment1Point2.x))
             &&
-            x >= segment2Point1.x && x <= segment2Point2.x)
+            ((x > segment2Point1.x && x < segment2Point2.x) || AreFloatsEqual(x, segment2Point1.x) || AreFloatsEqual(x, segment2Point2.x)))
         {
             intersects = true;
             intersection = new Vector2(x, y);

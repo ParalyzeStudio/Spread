@@ -102,7 +102,7 @@ public class GridAnchor
         {
             foreach (BridgeBehaviour bridge in m_bridges)
             {
-                if (bridge.m_status == BridgeBehaviour.BridgeStatus.Faded) //don't spread on bridges that are done or already spreading
+                if (bridge.m_status == BridgeBehaviour.BridgeStatus.Faded && bridge.m_spreadBridge == null) //don't spread on bridges that are done or already spreading
                     bridge.SpreadAroundAnchorPoint(this);
             }
 

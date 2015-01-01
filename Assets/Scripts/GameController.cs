@@ -5,20 +5,14 @@ using System.Collections.Generic;
 public class GameController : MonoBehaviour 
 {
     public Vector2 m_designScreenSize;
-
-    private List<GridAnchor> m_anchors;
-    public List<GridAnchor> Anchors
-    {
-        get
-        {
-            return m_anchors;
-        }
-    }
+    public List<GridAnchor> m_anchors { get; set; }
+    private bool m_gameEnded;
 
     void Awake()
     {
         //set the correct size for camera (m_designScreenSize height / 2.0f)
         Camera.main.orthographicSize = m_designScreenSize.y / 2.0f;
+        m_gameEnded = false;
     }
 
 	void Start () 
@@ -29,16 +23,24 @@ public class GameController : MonoBehaviour
 
 	void Update () 
     {
-        bool bVictory = CheckForVictory();
-        if (bVictory)
+        if (!m_gameEnded)
         {
-            Debug.Log("+++VICTORY+++");
-        }
+            bool bVictory = CheckForVictory();
+            if (bVictory)
+            {
+                Debug.Log("+++VICTORY+++");
+                m_gameEnded = true;
+            }
 
-        bool bDefeat = CheckForDefeat();
-        if (bDefeat)
-        {
-            Debug.Log("+++DEFEAT+++");
+            if (!bVictory) //we won no need to check for defeat
+            {
+                bool bDefeat = CheckForDefeat();
+                if (bDefeat)
+                {
+                    Debug.Log("+++DEFEAT+++");
+                    m_gameEnded = true;
+                }
+            }
         }
 	}
 

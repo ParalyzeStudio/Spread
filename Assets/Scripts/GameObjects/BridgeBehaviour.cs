@@ -8,7 +8,7 @@ public class BridgeBehaviour : UVQuad
     public const float FADED_BRIDGE_Z_VALUE = -100.0f;
     public const float SPREADING_BRIDGE_Z_VALUE = -150.0f;
     public const float BRIDGE_THICKNESS = 10.0f;
-    public const float BRIDGE_SPREADING_SPEED = 200.0f;
+    public const float BRIDGE_SPREADING_SPEED = 300.0f;
 
     public enum BridgeStatus
     {
@@ -21,8 +21,8 @@ public class BridgeBehaviour : UVQuad
     public Vector2 m_endPoint;
     public GameObject m_solidBridgePrefab;
     public BridgeStatus m_status;
-    private BridgeBehaviour m_spreadBridge;
-    private BridgeBehaviour m_coveredBridge;
+    public BridgeBehaviour m_spreadBridge { get; set; }
+    public BridgeBehaviour m_coveredBridge { get; set; }
     private List<GridAnchor> m_anchors; //all anchors this bridge pass through
     private GridAnchor m_spreadAnchor;
 
