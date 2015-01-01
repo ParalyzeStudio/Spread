@@ -18,6 +18,9 @@ public class NodeBehaviour : MonoBehaviour
     public GameObject m_simpleNodePrefab;
     //public GameObject m_targetIndicatorNodePrefab; //not used for the moment, currently using the simple node prefab with a different tint color on the shader
 
+    //GUI item that has been deactivated for creating this node
+    public GameObject m_deactivatedGUIItem { get; set; }
+
     //Simple nodes properties
     private GridAnchor m_moveStartAnchor; //the anchor this node starts from when moving
     private GridAnchor m_moveEndAnchor; //the anchor this node ends to when moving
@@ -70,6 +73,7 @@ public class NodeBehaviour : MonoBehaviour
                 transform.position = new Vector3(m_moveEndAnchor.m_position.x, m_moveEndAnchor.m_position.y, GetZValue());
                 m_moving = false;
                 m_moveEndAnchor.Spread();
+                this.GetComponent<NodeTouchHandler>().m_attachedAnchor = m_moveEndAnchor;
             }
             else
                 transform.position = new Vector3(positionVec2.x, positionVec2.y, GetZValue());

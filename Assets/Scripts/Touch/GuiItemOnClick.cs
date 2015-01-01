@@ -19,8 +19,9 @@ public class GuiItemOnClick : MonoBehaviour
         clonedNodeBehaviour.m_nodeType = NodeBehaviour.NodeType.Simple;
         clonedNodeBehaviour.m_movementPoints = this.GetComponent<NodeBehaviour>().m_movementPoints;
 
-        //destroy the gui element
-        Destroy(this.gameObject);
+        //deactivate the gui element
+        this.gameObject.SetActive(false);
+        clonedNodeBehaviour.m_deactivatedGUIItem = this.gameObject;
     }
 
     /**

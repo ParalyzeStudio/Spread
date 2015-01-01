@@ -125,10 +125,19 @@ public class NodeTouchHandler : TouchHandler
         NodeBehaviour nodeBehaviour = this.GetComponent<NodeBehaviour>();
         if (nodeBehaviour.m_nodeType == NodeBehaviour.NodeType.Simple)
         {
-            if (m_snappedAnchor != null)
+            if (m_attachedAnchor == null)
             {
-                m_attachedAnchor = m_snappedAnchor;
-                m_snappedAnchor.Spread();
+                if (m_snappedAnchor != null)
+                {
+                    m_attachedAnchor = m_snappedAnchor;
+                    m_snappedAnchor.Spread();
+                    Destroy(nodeBehaviour.m_deactivatedGUIItem);
+                }
+                else
+                {
+                    Destroy(this.gameObject);
+                    nodeBehaviour.m_deactivatedGUIItem.SetActive(true);
+                }
             }
         }
         else if (nodeBehaviour.m_nodeType == NodeBehaviour.NodeType.TargetIndicator)
