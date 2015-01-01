@@ -55,7 +55,7 @@ public class NodeTouchHandler : TouchHandler
             }
             else
             {
-                if (m_targetIndicatorNode == null)
+                if (nodeBehaviour.m_movementPoints > 0 && m_targetIndicatorNode == null)
                 {
                     //instantiate a special node that will serve as a indicator that can snap on neighbouring reachable anchors
                     Vector3 targetIndicatorPosition = transform.position;

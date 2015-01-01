@@ -17,6 +17,7 @@ public class GuiItemOnClick : MonoBehaviour
         GameObject clonedNode = (GameObject)Instantiate(m_nodePrefab, clonedNodePosition, Quaternion.identity);
         NodeBehaviour clonedNodeBehaviour = clonedNode.GetComponent<NodeBehaviour>();
         clonedNodeBehaviour.m_nodeType = NodeBehaviour.NodeType.Simple;
+        clonedNodeBehaviour.m_movementPoints = this.GetComponent<NodeBehaviour>().m_movementPoints;
 
         //destroy the gui element
         Destroy(this.gameObject);

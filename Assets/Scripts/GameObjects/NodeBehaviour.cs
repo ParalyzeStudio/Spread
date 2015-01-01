@@ -32,9 +32,13 @@ public class NodeBehaviour : MonoBehaviour
 
     public void MoveParentNodeToAnchor(GridAnchor anchor)
     {
-        m_moveStartAnchor = this.GetComponent<NodeTouchHandler>().m_attachedAnchor;
-        m_moveEndAnchor = anchor;
-        m_moving = true;
+        if (m_movementPoints > 0)
+        {
+            m_moveStartAnchor = this.GetComponent<NodeTouchHandler>().m_attachedAnchor;
+            m_moveEndAnchor = anchor;
+            m_moving = true;
+            m_movementPoints--;
+        }
     }
 
     public float GetZValue()
