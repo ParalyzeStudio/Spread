@@ -18,9 +18,11 @@ public class NodeBehaviour : MonoBehaviour
     public GameObject m_simpleNodePrefab;
     //public GameObject m_targetIndicatorNodePrefab; //not used for the moment, currently using the simple node prefab with a different tint color on the shader
 
+    //Simple nodes properties
     private GridAnchor m_moveStartAnchor; //the anchor this node starts from when moving
     private GridAnchor m_moveEndAnchor; //the anchor this node ends to when moving
     private bool m_moving; //is this node moving or not?
+    public int m_movementPoints; //a simple node can only make a finite number of moves
 
 	// Use this for initialization
 	void Start () 

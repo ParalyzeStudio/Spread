@@ -44,7 +44,7 @@ public class GameController : MonoBehaviour
     {
         m_anchors = new List<GridAnchor>();
 
-        GameObject[] allBridges = GetAllBridges();
+        GameObject[] allBridges = GameObject.FindGameObjectsWithTag("Bridge");
         for (int fadedBridgeIndex1 = 0; fadedBridgeIndex1 != allBridges.Length; fadedBridgeIndex1++)
         {
             GameObject bridgeObject1 = allBridges[fadedBridgeIndex1];
@@ -79,20 +79,6 @@ public class GameController : MonoBehaviour
                 }
             }
         }
-    }
-
-    /**
-     * Quick method to get all bridges in the scene
-     * **/
-    private GameObject[] GetAllBridges()
-    {
-        GameObject[] solidBridges = GameObject.FindGameObjectsWithTag("SolidBridge");
-        GameObject[] fadedBridges = GameObject.FindGameObjectsWithTag("FadedBridge");
-        GameObject[] allBridges = new GameObject[solidBridges.Length + fadedBridges.Length];
-        solidBridges.CopyTo(allBridges, 0);
-        fadedBridges.CopyTo(allBridges, solidBridges.Length);
-
-        return allBridges;
     }
     
     /**
@@ -136,7 +122,25 @@ public class GameController : MonoBehaviour
         return -1;
     }
 
-    bool CheckGameEnd()
+    /**
+     * Returns true if all bridges are marked as completed
+     * **/
+    public bool CheckVictory()
+    {
+        GameObject[] allBridges = GameObject.FindGameObjectsWithTag("Bridge");
+        foreach (GameObject bridge in allBridges)
+        {
+            BridgeBehaviour bridgeBehaviour = bridge.GetComponent<BridgeBehaviour>();
+            if (bridgeBehaviour.m_status != BridgeBehaviour.BridgeStatus.Completed)
+                return false;
+        }
+        return true;
+    }
+
+    /**
+     * Returns true if player cannot make any more moves and at least one bridge is not completed
+     * **/
+    public bool CheckDefeat()
     {
         return false;
     }

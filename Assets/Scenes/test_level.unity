@@ -137,7 +137,7 @@ GameObject:
   - 114: {fileID: 106640005}
   m_Layer: 0
   m_Name: SolidBridgePfb
-  m_TagString: SolidBridge
+  m_TagString: Bridge
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -571,7 +571,7 @@ GameObject:
   - 114: {fileID: 691514776}
   m_Layer: 0
   m_Name: FadedBridgePfb
-  m_TagString: FadedBridge
+  m_TagString: Bridge
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -582,7 +582,7 @@ Transform:
   m_PrefabParentObject: {fileID: 422048, guid: 39e3fdefa6a33e74e84118619f8d4423, type: 2}
   m_PrefabInternal: {fileID: 1629722940}
   m_GameObject: {fileID: 691514774}
-  m_LocalRotation: {x: 0, y: 0, z: .707113624, w: .707100034}
+  m_LocalRotation: {x: 0, y: 0, z: .70710963, w: .707103968}
   m_LocalPosition: {x: 91, y: 0, z: -100}
   m_LocalScale: {x: 558, y: 10, z: 1}
   m_Children: []
@@ -602,8 +602,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_textureRange: {x: 0, y: 0, z: 1, w: 1}
   m_textureWrapMode: 0
-  m_startPoint: {x: 91.0053635, y: -279}
-  m_endPoint: {x: 90.9946365, y: 279}
+  m_startPoint: {x: 91.002243, y: -279}
+  m_endPoint: {x: 90.997757, y: 279}
   m_solidBridgePrefab: {fileID: 112224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
   m_status: 2
 --- !u!23 &691514777
@@ -648,7 +648,7 @@ GameObject:
   - 114: {fileID: 719620395}
   m_Layer: 0
   m_Name: SolidBridgePfb
-  m_TagString: SolidBridge
+  m_TagString: Bridge
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -659,7 +659,7 @@ Transform:
   m_PrefabParentObject: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
   m_PrefabInternal: {fileID: 1140883499}
   m_GameObject: {fileID: 719620393}
-  m_LocalRotation: {x: 0, y: 0, z: -1, w: 2.22126505e-06}
+  m_LocalRotation: {x: 0, y: 0, z: -1, w: 1.50600943e-06}
   m_LocalPosition: {x: 0, y: -279, z: -100}
   m_LocalScale: {x: 548, y: 10, z: 1}
   m_Children: []
@@ -679,8 +679,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_textureRange: {x: 0, y: 0, z: 1, w: 1}
   m_textureWrapMode: 0
-  m_startPoint: {x: 274, y: -278.998749}
-  m_endPoint: {x: -274, y: -279.001251}
+  m_startPoint: {x: 274, y: -278.999207}
+  m_endPoint: {x: -274, y: -279.000793}
   m_solidBridgePrefab: {fileID: 719620393}
   m_status: 1
 --- !u!23 &719620396
@@ -948,7 +948,7 @@ GameObject:
   - 114: {fileID: 1069472862}
   m_Layer: 0
   m_Name: SolidBridgePfb
-  m_TagString: SolidBridge
+  m_TagString: Bridge
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1125,7 +1125,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 2.22126505e-06
+      value: 1.50600943e-06
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_RootOrder
@@ -1265,7 +1265,7 @@ GameObject:
   - 114: {fileID: 1370352779}
   m_Layer: 0
   m_Name: FadedBridgePfb
-  m_TagString: FadedBridge
+  m_TagString: Bridge
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1342,7 +1342,7 @@ GameObject:
   - 114: {fileID: 1411398647}
   m_Layer: 0
   m_Name: FadedBridgePfb
-  m_TagString: FadedBridge
+  m_TagString: Bridge
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1353,7 +1353,7 @@ Transform:
   m_PrefabParentObject: {fileID: 422048, guid: 39e3fdefa6a33e74e84118619f8d4423, type: 2}
   m_PrefabInternal: {fileID: 1699588509}
   m_GameObject: {fileID: 1411398645}
-  m_LocalRotation: {x: 0, y: 0, z: .707113624, w: .707100034}
+  m_LocalRotation: {x: 0, y: 0, z: .70710963, w: .707103968}
   m_LocalPosition: {x: -91, y: 0, z: -100}
   m_LocalScale: {x: 558, y: 10, z: 1}
   m_Children: []
@@ -1373,8 +1373,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_textureRange: {x: 0, y: 0, z: 1, w: 1}
   m_textureWrapMode: 0
-  m_startPoint: {x: -90.9946365, y: -279}
-  m_endPoint: {x: -91.0053635, y: 279}
+  m_startPoint: {x: -90.997757, y: -279}
+  m_endPoint: {x: -91.002243, y: 279}
   m_solidBridgePrefab: {fileID: 112224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
   m_status: 2
 --- !u!23 &1411398648
@@ -1448,7 +1448,7 @@ GameObject:
   - 114: {fileID: 1554604463}
   m_Layer: 0
   m_Name: FadedBridgePfb
-  m_TagString: FadedBridge
+  m_TagString: Bridge
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1541,11 +1541,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 422048, guid: 39e3fdefa6a33e74e84118619f8d4423, type: 2}
       propertyPath: m_LocalRotation.z
-      value: .707113624
+      value: .70710963
       objectReference: {fileID: 0}
     - target: {fileID: 422048, guid: 39e3fdefa6a33e74e84118619f8d4423, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .707100034
+      value: .707103968
       objectReference: {fileID: 0}
     - target: {fileID: 422048, guid: 39e3fdefa6a33e74e84118619f8d4423, type: 2}
       propertyPath: m_RootOrder
@@ -1687,11 +1687,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 422048, guid: 39e3fdefa6a33e74e84118619f8d4423, type: 2}
       propertyPath: m_LocalRotation.z
-      value: .707113624
+      value: .70710963
       objectReference: {fileID: 0}
     - target: {fileID: 422048, guid: 39e3fdefa6a33e74e84118619f8d4423, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .707100034
+      value: .707103968
       objectReference: {fileID: 0}
     - target: {fileID: 422048, guid: 39e3fdefa6a33e74e84118619f8d4423, type: 2}
       propertyPath: m_RootOrder
@@ -1760,11 +1760,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_LocalRotation.z
-      value: .707113624
+      value: .707107484
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .707100034
+      value: .707106173
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_RootOrder
@@ -2157,7 +2157,7 @@ GameObject:
   - 114: {fileID: 2134325147}
   m_Layer: 0
   m_Name: SolidBridgePfb
-  m_TagString: SolidBridge
+  m_TagString: Bridge
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2168,7 +2168,7 @@ Transform:
   m_PrefabParentObject: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
   m_PrefabInternal: {fileID: 1780829598}
   m_GameObject: {fileID: 2134325145}
-  m_LocalRotation: {x: 0, y: 0, z: .707113624, w: .707100034}
+  m_LocalRotation: {x: 0, y: 0, z: .707107484, w: .707106173}
   m_LocalPosition: {x: -279, y: 0, z: -100}
   m_LocalScale: {x: 548, y: 10, z: 1}
   m_Children: []
@@ -2188,8 +2188,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_textureRange: {x: 0, y: 0, z: 1, w: 1}
   m_textureWrapMode: 0
-  m_startPoint: {x: -278.99472, y: -274}
-  m_endPoint: {x: -279.00528, y: 274}
+  m_startPoint: {x: -278.999512, y: -274}
+  m_endPoint: {x: -279.000488, y: 274}
   m_solidBridgePrefab: {fileID: 2134325145}
   m_status: 1
 --- !u!23 &2134325148
