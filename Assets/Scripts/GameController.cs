@@ -29,10 +29,16 @@ public class GameController : MonoBehaviour
 
 	void Update () 
     {
-        bool bGameEnded = CheckGameEnd();
-        if (bGameEnded)
+        bool bVictory = CheckForVictory();
+        if (bVictory)
         {
+            Debug.Log("+++VICTORY+++");
+        }
 
+        bool bDefeat = CheckForDefeat();
+        if (bDefeat)
+        {
+            Debug.Log("+++DEFEAT+++");
         }
 	}
 
@@ -125,7 +131,7 @@ public class GameController : MonoBehaviour
     /**
      * Returns true if all bridges are marked as completed
      * **/
-    public bool CheckVictory()
+    public bool CheckForVictory()
     {
         GameObject[] allBridges = GameObject.FindGameObjectsWithTag("Bridge");
         foreach (GameObject bridge in allBridges)
@@ -140,7 +146,7 @@ public class GameController : MonoBehaviour
     /**
      * Returns true if player cannot make any more moves and at least one bridge is not completed
      * **/
-    public bool CheckDefeat()
+    public bool CheckForDefeat()
     {
         return false;
     }
