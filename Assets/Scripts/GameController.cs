@@ -139,7 +139,7 @@ public class GameController : MonoBehaviour
         foreach (GameObject bridge in allBridges)
         {
             BridgeBehaviour bridgeBehaviour = bridge.GetComponent<BridgeBehaviour>();
-            if (bridgeBehaviour.m_status != BridgeBehaviour.BridgeStatus.Completed)
+            if (bridgeBehaviour.m_type != BridgeBehaviour.BridgeType.Completed)
                 return false;
         }
         return true;

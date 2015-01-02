@@ -12,6 +12,7 @@ GameObject:
   - 114: {fileID: 11443714}
   - 114: {fileID: 11400052}
   - 114: {fileID: 11408354}
+  - 114: {fileID: 11443530}
   m_Layer: 5
   m_Name: SimpleNodeUIPfb
   m_TagString: Untagged
@@ -61,6 +62,19 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &11443530
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 143718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 301e2aee0c09db84f8add983500dab8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_simpleNodePrefab: {fileID: 0}
+  m_movementPoints: 2
 --- !u!114 &11443714
 MonoBehaviour:
   m_ObjectHideFlags: 1

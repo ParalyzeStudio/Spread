@@ -60,7 +60,6 @@ public class NodeBehaviour : MonoBehaviour
 
         if (m_moving)
         {
-            float fNodeZValue = this.transform.position.z;
             Vector2 positionVec2 = transform.position;
             Vector2 direction = (m_moveEndAnchor.m_position - m_moveStartAnchor.m_position);
             float fTotalSqrDistance = direction.sqrMagnitude;

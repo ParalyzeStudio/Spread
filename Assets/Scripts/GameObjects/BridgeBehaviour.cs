@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[ExecuteInEditMode]
 public class BridgeBehaviour : UVQuad 
 {
     public const float SOLID_BRIDGE_Z_VALUE = -100.0f;
@@ -10,17 +11,19 @@ public class BridgeBehaviour : UVQuad
     public const float BRIDGE_THICKNESS = 10.0f;
     public const float BRIDGE_SPREADING_SPEED = 300.0f;
 
-    public enum BridgeStatus
+    public enum BridgeType
     {
         Completed = 1,
         Faded = 2,
-        Spreading = 3
+        Spreading = 3,
+        TargetIndicator = 4
     }
 
     public Vector2 m_startPoint;
     public Vector2 m_endPoint;
     public GameObject m_solidBridgePrefab;
-    public BridgeStatus m_status;
+    public BridgeType m_type;
+    private BridgeType m_prevType;
     public BridgeBehaviour m_spreadBridge { get; set; }
     public BridgeBehaviour m_coveredBridge { get; set; }
     private List<GridAnchor> m_anchors; //all anchors this bridge pass through
@@ -45,10 +48,29 @@ public class BridgeBehaviour : UVQuad
 
     protected override void Update()
     {
+        if (m_prevType != m_type)
+        {
+            m_prevType = m_type;
+            MaterialHolder materialHolder = GetComponent<MaterialHolder>();
+            MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
+            if (m_type == BridgeType.Completed || m_type == BridgeType.Spreading)
+            {
+                meshRenderer.sharedMaterial = materialHolder.GetMaterialAtIndex(0); //white texture
+            }
+            else if (m_type == BridgeType.Faded)
+            {
+                meshRenderer.sharedMaterial = materialHolder.GetMaterialAtIndex(1); //white texture with 0.12f opacity
+            }
+            else if (m_type == BridgeType.TargetIndicator)
+            {
+                meshRenderer.sharedMaterial = materialHolder.GetMaterialAtIndex(2); //red texture
+            }
+        }
+
         float dt = Time.deltaTime;
 
         //handle the special case of a bridge that is currently spreading
-        if (m_status == BridgeStatus.Spreading)
+        if (m_type == BridgeType.Spreading)
         {
             //Check if the bridge spreading is done or increase its size otherwise
             float dx = BRIDGE_SPREADING_SPEED * dt;
@@ -105,7 +127,7 @@ public class BridgeBehaviour : UVQuad
             //we finish building the spreading bridge
             if (bStartPointReached && bEndPointReached) 
             {
-                m_status = BridgeStatus.Completed;
+                m_type = BridgeType.Completed;
                 NotifyAnchorsOfBridgeAddition(this);
                 NotifyAnchorsOfBridgeRemoval(m_coveredBridge);
                 Destroy(m_coveredBridge.gameObject);
@@ -116,11 +138,11 @@ public class BridgeBehaviour : UVQuad
         //set the correct position
         Vector2 bridgeCenter = (m_startPoint + m_endPoint) / 2.0f;
         float zPosition;
-        if (m_status == BridgeStatus.Completed)
+        if (m_type == BridgeType.Completed)
             zPosition = SOLID_BRIDGE_Z_VALUE;
-        else if (m_status == BridgeStatus.Faded)
+        else if (m_type == BridgeType.Faded)
             zPosition = FADED_BRIDGE_Z_VALUE;
-        else if (m_status == BridgeStatus.Spreading)
+        else if (m_type == BridgeType.Spreading)
             zPosition = SPREADING_BRIDGE_Z_VALUE;
         else
             zPosition = SOLID_BRIDGE_Z_VALUE;
@@ -149,7 +171,7 @@ public class BridgeBehaviour : UVQuad
         Transform transform = clonedObject.GetComponent<Transform>();
         transform.localScale = new Vector3(0.0f, transform.localScale.y, transform.localScale.z);
         m_spreadBridge = clonedObject.GetComponent<BridgeBehaviour>();
-        m_spreadBridge.m_status = BridgeStatus.Spreading;
+        m_spreadBridge.m_type = BridgeType.Spreading;
         m_spreadBridge.m_spreadAnchor = anchor;
         m_spreadBridge.m_coveredBridge = this;
         m_spreadBridge.m_startPoint = anchor.m_position;

@@ -36,7 +36,6 @@ public class NodeTouchHandler : TouchHandler
             return false;
 
         NodeBehaviour nodeBehaviour = this.GetComponent<NodeBehaviour>();
-        NodeTouchHandler nodeTouchHandler = this.GetComponent<NodeTouchHandler>();
              
         if (nodeBehaviour.m_nodeType == NodeBehaviour.NodeType.Simple)  //SIMPLE NODES
         {
@@ -70,7 +69,15 @@ public class NodeTouchHandler : TouchHandler
 
                     //change the color of the node
                     MeshRenderer nodeRenderer = m_targetIndicatorNode.GetComponent<MeshRenderer>();
-                    nodeRenderer.material.SetVector("_Color", new Vector4(1, 0, 0, 1));
+                    Material targetIndicatorMaterial = (Material)Resources.LoadAssetAtPath("Materials/target_indicator_material", typeof(Material));
+                    if (targetIndicatorMaterial != null)
+                    {
+                        Debug.Log("found material");
+                        nodeRenderer.sharedMaterial = targetIndicatorMaterial;
+                    }
+                    else
+                        Debug.Log("NOT found material");
+                    //nodeRenderer.material.SetVector("_Color", new Vector4(1, 0, 0, 1));
                 }
             }
         }
