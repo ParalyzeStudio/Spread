@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GuiItemOnClick : MonoBehaviour 
 {
-    public GameObject m_nodePrefab;
+    public GameObject m_simpleNodePrefab;
 
     /**
      * Drag a playable item onto the scene by destroying the GUI item itself and creating a game object
@@ -14,7 +14,7 @@ public class GuiItemOnClick : MonoBehaviour
         Vector2 guiNodePosition = this.GetComponent<RectTransform>().anchoredPosition;
         Vector3 clonedNodePosition = CoordinatesUtils.SharedInstance.GetScreenCoordinatesInWorldPoint(guiNodePosition);
         clonedNodePosition.z = NodeBehaviour.NODE_Z_VALUE;
-        GameObject clonedNode = (GameObject)Instantiate(m_nodePrefab, clonedNodePosition, Quaternion.identity);
+        GameObject clonedNode = (GameObject)Instantiate(m_simpleNodePrefab, clonedNodePosition, Quaternion.identity);
         NodeBehaviour clonedNodeBehaviour = clonedNode.GetComponent<NodeBehaviour>();
         clonedNodeBehaviour.m_nodeType = NodeBehaviour.NodeType.Simple;
         clonedNodeBehaviour.m_movementPoints = this.GetComponent<NodeBehaviour>().m_movementPoints;

@@ -31,7 +31,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24f27e04ad7e7f54d80cc8acd4049e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_nodePrefab: {fileID: 122068, guid: 88cb93543a858be438c92fbacd82e33b, type: 2}
+  m_simpleNodePrefab: {fileID: 122068, guid: 88cb93543a858be438c92fbacd82e33b, type: 2}
 --- !u!114 &11408354
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 301e2aee0c09db84f8add983500dab8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_simpleNodePrefab: {fileID: 0}
+  m_targetIndicatorNodePrefab: {fileID: 0}
   m_movementPoints: 2
 --- !u!114 &11443714
 MonoBehaviour:

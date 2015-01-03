@@ -15,7 +15,7 @@ public class NodeBehaviour : MonoBehaviour
 
     public NodeType m_nodeType { get; set; }
 
-    public GameObject m_simpleNodePrefab;
+    public GameObject m_targetIndicatorNodePrefab;
     //public GameObject m_targetIndicatorNodePrefab; //not used for the moment, currently using the simple node prefab with a different tint color on the shader
 
     //GUI item that has been deactivated for creating this node

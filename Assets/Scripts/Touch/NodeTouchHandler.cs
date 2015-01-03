@@ -59,67 +59,62 @@ public class NodeTouchHandler : TouchHandler
                     //instantiate a special node that will serve as a indicator that can snap on neighbouring reachable anchors
                     Vector3 targetIndicatorPosition = transform.position;
                     targetIndicatorPosition.z = NodeBehaviour.TARGET_ANCHOR_NODE_Z_VALUE;
-                    m_targetIndicatorNode = (GameObject) Instantiate(nodeBehaviour.m_simpleNodePrefab,
-                                                                     targetIndicatorPosition,
-                                                                     Quaternion.identity);
+                    m_targetIndicatorNode = (GameObject)Instantiate(nodeBehaviour.m_targetIndicatorNodePrefab,
+                                                                    targetIndicatorPosition,
+                                                                    Quaternion.identity);
 
                     m_targetIndicatorNode.GetComponent<NodeBehaviour>().m_nodeType = NodeBehaviour.NodeType.TargetIndicator;
                     m_targetIndicatorNode.GetComponent<NodeTouchHandler>().m_attachedAnchor = this.m_attachedAnchor;
                     m_targetIndicatorNode.GetComponent<NodeTouchHandler>().m_parentNode = this.gameObject;
-
-                    //change the color of the node
-                    MeshRenderer nodeRenderer = m_targetIndicatorNode.GetComponent<MeshRenderer>();
-                    Material targetIndicatorMaterial = (Material)Resources.LoadAssetAtPath("Materials/target_indicator_material", typeof(Material));
-                    if (targetIndicatorMaterial != null)
-                    {
-                        Debug.Log("found material");
-                        nodeRenderer.sharedMaterial = targetIndicatorMaterial;
-                    }
-                    else
-                        Debug.Log("NOT found material");
-                    //nodeRenderer.material.SetVector("_Color", new Vector4(1, 0, 0, 1));
                 }
             }
         }
         else if (nodeBehaviour.m_nodeType == NodeBehaviour.NodeType.TargetIndicator)
         {
-            SnapToClosestAnchor();
-            bool bMoveTargetIndicator = false;
-            if (m_snappedAnchor != null)
+            FindTargetAnchor();
+
+            Vector2 attachedAnchorToMouseDirection = CoordinatesUtils.SharedInstance.GetMousePositionInWorldCoordinates() - m_attachedAnchor.m_position;
+            Vector2 attachedAnchorToTargetAnchorDirection = m_targetAnchor.m_position - m_attachedAnchor.m_position;
+            float fDistanceToTargetAnchor = attachedAnchorToTargetAnchorDirection.magnitude;
+            attachedAnchorToTargetAnchorDirection.Normalize();
+
+            //Project the first vector on the second one
+            float fProjectionLength = Vector2.Dot(attachedAnchorToMouseDirection, attachedAnchorToTargetAnchorDirection);
+
+            if (fProjectionLength <= fDistanceToTargetAnchor)
             {
-                TryToUnsnap();
-                if (m_snappedAnchor == null) //unsnap succeeded
-                    bMoveTargetIndicator = true;
-            }
-            else
-                bMoveTargetIndicator = true;
-
-            if (bMoveTargetIndicator)
-            {
-                FindTargetAnchor();
-
-                Vector2 attachedAnchorToMouseDirection = CoordinatesUtils.SharedInstance.GetMousePositionInWorldCoordinates() - m_attachedAnchor.m_position;
-                Vector2 attachedAnchorToTargetAnchorDirection = m_targetAnchor.m_position - m_attachedAnchor.m_position;
-                float fDistanceToTargetAnchor = attachedAnchorToTargetAnchorDirection.magnitude;
-                attachedAnchorToTargetAnchorDirection.Normalize();
-
-                //Project the first vector on the second one
-                float fProjectionLength = Vector2.Dot(attachedAnchorToMouseDirection, attachedAnchorToTargetAnchorDirection);
-
-                if (fProjectionLength <= fDistanceToTargetAnchor)
+                bool bMoveTargetIndicator = false;
+                if (m_snappedAnchor != null)
                 {
-                    //set the new position of target indicator node
-                    float targetIndicatorNodeZValue = transform.position.z;
-                    transform.position = m_attachedAnchor.m_position + attachedAnchorToTargetAnchorDirection * fProjectionLength;
-                    transform.position = new Vector3(transform.position.x, transform.position.y, targetIndicatorNodeZValue);
+                    TryToUnsnap();
+                    if (m_snappedAnchor == null) //unsnap succeeded
+                        bMoveTargetIndicator = true;
                 }
                 else
                 {
-                    Vector3 targetAnchorPosition = m_targetAnchor.m_position;
-                    targetAnchorPosition.z = NodeBehaviour.TARGET_ANCHOR_NODE_Z_VALUE;
-                    transform.position = targetAnchorPosition;
+                    if (SnapToClosestAnchor())
+                        bMoveTargetIndicator = false;
+                    else
+                        bMoveTargetIndicator = true;
                 }
-            }
+
+                if (bMoveTargetIndicator)
+                {                  
+                    if (fProjectionLength <= fDistanceToTargetAnchor)
+                    {
+                        //set the new position of target indicator node
+                        float targetIndicatorNodeZValue = transform.position.z;
+                        transform.position = m_attachedAnchor.m_position + attachedAnchorToTargetAnchorDirection * fProjectionLength;
+                        transform.position = new Vector3(transform.position.x, transform.position.y, targetIndicatorNodeZValue);
+                    }
+                    else
+                    {
+                        Vector3 targetAnchorPosition = m_targetAnchor.m_position;
+                        targetAnchorPosition.z = NodeBehaviour.TARGET_ANCHOR_NODE_Z_VALUE;
+                        transform.position = targetAnchorPosition;
+                    }
+                }
+            }            
         }
 
         return true;

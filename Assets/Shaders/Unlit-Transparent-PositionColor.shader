@@ -1,4 +1,4 @@
-﻿Shader "Custom/Unlit/Transparent-PositionColor" {
+﻿Shader "Custom/Unlit/Transparent/PositionColor" {
 Properties {
 	_Color ("Color (RGBA)", Color) = (1,1,1,1)
 }

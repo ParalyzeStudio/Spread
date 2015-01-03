@@ -1,4 +1,4 @@
-﻿Shader "Custom/Unlit/Transparent-TintColor" {
+﻿Shader "Custom/Unlit/Transparent/PositionTexTintColor" {
 Properties {
 	_MainTex ("Texture", 2D) = "white" {}
 	_Color ("Tint", Color) = (1,1,1,1)

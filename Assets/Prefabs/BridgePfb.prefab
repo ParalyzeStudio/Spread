@@ -89,7 +89,7 @@ MonoBehaviour:
   materials:
   - {fileID: 2100000, guid: 0a459a10dabcd564197dc04b31298c74, type: 2}
   - {fileID: 2100000, guid: 4825781af52831449afed786bbea341c, type: 2}
-  - {fileID: 2100000, guid: 558345d0bd1ab7d4aabc0f825ee56e3f, type: 2}
+  - {fileID: 2100000, guid: 73d9361f516c67747b623e8b50fbe558, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

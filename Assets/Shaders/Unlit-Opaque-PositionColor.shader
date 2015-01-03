@@ -1,4 +1,4 @@
-﻿Shader "Custom/Unlit/Opaque-PositionColor" {
+﻿Shader "Custom/Unlit/Opaque/PositionColor" {
 Properties {
 	_Color ("Color (RGB)", Color) = (1,1,1,1)
 }

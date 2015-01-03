@@ -69,7 +69,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 301e2aee0c09db84f8add983500dab8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_simpleNodePrefab: {fileID: 122068}
+  m_targetIndicatorNodePrefab: {fileID: 120546, guid: 31aaff8448dc85a4f9f052a5dee54e99,
+    type: 2}
   m_movementPoints: 0
 --- !u!114 &11454160
 MonoBehaviour:
