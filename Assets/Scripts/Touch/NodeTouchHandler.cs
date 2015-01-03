@@ -165,11 +165,8 @@ public class NodeTouchHandler : TouchHandler
         {
             if (m_snappedAnchor != null)
             {
-                Debug.Log("+++snapped anchor not null");
                 this.m_parentNode.GetComponent<NodeMovement>().MoveParentNodeToAnchor(m_snappedAnchor);               
             }
-            else
-                Debug.Log("---snapped anchor NULL");
             Destroy(this.gameObject); //destroy the target indicator node
             Destroy(m_parentNode.GetComponent<NodeTouchHandler>().m_targetIndicatorBridge); //destroy the target indicator node
         }

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class NodeMovement : MonoBehaviour 
 {
-    public const float NODE_MOVE_SPEED = 300.0f;
+    public const float NODE_MOVE_SPEED = 350.0f;
 
     private GridAnchor m_moveStartAnchor; //the anchor this node starts from when moving
     private GridAnchor m_moveEndAnchor; //the anchor this node ends to when moving
@@ -23,13 +23,6 @@ public class NodeMovement : MonoBehaviour
 
     void Update()
     {
-        NodeTouchHandler nodeTouchHandler = GetComponent<NodeTouchHandler>();
-        if (nodeTouchHandler != null && nodeTouchHandler.m_attachedAnchor != null)
-        {
-            Debug.Log("m_attachedAnchor X:" + nodeTouchHandler.m_attachedAnchor.m_position.x +
-                      " Y:" + nodeTouchHandler.m_attachedAnchor.m_position.y);
-        }
-
         float dt = Time.deltaTime;
 
         if (m_moving)

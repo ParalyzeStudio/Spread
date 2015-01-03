@@ -87,7 +87,7 @@ public class BridgeSpread : MonoBehaviour
             {
                 Vector2 anchorPosition = anchor.m_position;
 
-                if (!anchor.m_linked && MathUtils.isLinePointContainedInSegment(anchorPosition, bridgeComponent.m_startPoint, bridgeComponent.m_endPoint))
+                if (MathUtils.isLinePointContainedInSegment(anchorPosition, bridgeComponent.m_startPoint, bridgeComponent.m_endPoint))
                 {
                     bridgeComponent.PushAnchor(anchor);
                     anchor.m_linked = true;
