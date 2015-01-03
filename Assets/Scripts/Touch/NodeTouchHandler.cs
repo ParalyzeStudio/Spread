@@ -9,7 +9,12 @@ public class NodeTouchHandler : TouchHandler
     private GridAnchor m_snappedAnchor; //the current anchor the node is snapped to
     public GridAnchor m_attachedAnchor { get; set; } //the anchor the node is attached too and where it can move to its neighbouring anchors
     private GridAnchor m_targetAnchor; //the anchor we target when moving the node from the attached anchor (determined in the first OnPointerMove)
+    
+    //target indicators
+    public GameObject m_targetIndicatorNodePrefab;
+    public GameObject m_targetIndicatorBridgePrefab;
     private GameObject m_targetIndicatorNode; //node we can drag onto a target anchor
+    private GameObject m_targetIndicatorBridge; //bridge that is drawn with the node
     private GameObject m_parentNode; //the parent node of the target indicator node
 
     public void Awake()
@@ -35,9 +40,10 @@ public class NodeTouchHandler : TouchHandler
         if (!base.OnPointerMove(pointerLocation, ref delta))
             return false;
 
-        NodeBehaviour nodeBehaviour = this.GetComponent<NodeBehaviour>();
+        NodeProperties nodeBehaviour = this.GetComponent<NodeProperties>();
+        NodeMovement nodeMovement = this.GetComponent<NodeMovement>();
              
-        if (nodeBehaviour.m_nodeType == NodeBehaviour.NodeType.Simple)  //SIMPLE NODES
+        if (nodeBehaviour.m_nodeType == NodeProperties.NodeType.Simple)  //SIMPLE NODES
         {
             if (m_attachedAnchor == null)//node can move freely (i.e it has been dragged from GUI item list)
             {
@@ -54,22 +60,28 @@ public class NodeTouchHandler : TouchHandler
             }
             else
             {
-                if (nodeBehaviour.m_movementPoints > 0 && m_targetIndicatorNode == null)
+                if (nodeMovement.m_movementPoints > 0 && m_targetIndicatorNode == null)
                 {
                     //instantiate a special node that will serve as a indicator that can snap on neighbouring reachable anchors
                     Vector3 targetIndicatorPosition = transform.position;
-                    targetIndicatorPosition.z = NodeBehaviour.TARGET_ANCHOR_NODE_Z_VALUE;
-                    m_targetIndicatorNode = (GameObject)Instantiate(nodeBehaviour.m_targetIndicatorNodePrefab,
-                                                                    targetIndicatorPosition,
-                                                                    Quaternion.identity);
+                    targetIndicatorPosition.z = NodeProperties.TARGET_ANCHOR_NODE_Z_VALUE;
+                    m_targetIndicatorNode = (GameObject) Instantiate(m_targetIndicatorNodePrefab,
+                                                                     targetIndicatorPosition,
+                                                                     Quaternion.identity);
 
-                    m_targetIndicatorNode.GetComponent<NodeBehaviour>().m_nodeType = NodeBehaviour.NodeType.TargetIndicator;
+                    m_targetIndicatorNode.GetComponent<NodeProperties>().m_nodeType = NodeProperties.NodeType.TargetIndicator;
                     m_targetIndicatorNode.GetComponent<NodeTouchHandler>().m_attachedAnchor = this.m_attachedAnchor;
                     m_targetIndicatorNode.GetComponent<NodeTouchHandler>().m_parentNode = this.gameObject;
+
+                    m_targetIndicatorBridge = (GameObject)Instantiate(m_targetIndicatorBridgePrefab,
+                                                                       targetIndicatorPosition,
+                                                                       Quaternion.identity);
+
+                    m_targetIndicatorBridge.GetComponent<Bridge>().m_type = Bridge.BridgeType.TargetIndicator;
                 }
             }
         }
-        else if (nodeBehaviour.m_nodeType == NodeBehaviour.NodeType.TargetIndicator)
+        else if (nodeBehaviour.m_nodeType == NodeProperties.NodeType.TargetIndicator)
         {
             FindTargetAnchor();
 
@@ -110,7 +122,7 @@ public class NodeTouchHandler : TouchHandler
                     else
                     {
                         Vector3 targetAnchorPosition = m_targetAnchor.m_position;
-                        targetAnchorPosition.z = NodeBehaviour.TARGET_ANCHOR_NODE_Z_VALUE;
+                        targetAnchorPosition.z = NodeProperties.TARGET_ANCHOR_NODE_Z_VALUE;
                         transform.position = targetAnchorPosition;
                     }
                 }
@@ -124,8 +136,8 @@ public class NodeTouchHandler : TouchHandler
     {
         base.OnPointerUp();
 
-        NodeBehaviour nodeBehaviour = this.GetComponent<NodeBehaviour>();
-        if (nodeBehaviour.m_nodeType == NodeBehaviour.NodeType.Simple)
+        NodeProperties nodeBehaviour = this.GetComponent<NodeProperties>();
+        if (nodeBehaviour.m_nodeType == NodeProperties.NodeType.Simple)
         {
             if (m_attachedAnchor == null)
             {
@@ -142,11 +154,11 @@ public class NodeTouchHandler : TouchHandler
                 }
             }
         }
-        else if (nodeBehaviour.m_nodeType == NodeBehaviour.NodeType.TargetIndicator)
+        else if (nodeBehaviour.m_nodeType == NodeProperties.NodeType.TargetIndicator)
         {
             if (m_snappedAnchor != null)
             {
-                this.m_parentNode.GetComponent<NodeBehaviour>().MoveParentNodeToAnchor(m_snappedAnchor);               
+                this.m_parentNode.GetComponent<NodeMovement>().MoveParentNodeToAnchor(m_snappedAnchor);               
             }
             Destroy(this.gameObject);
         }
@@ -193,7 +205,7 @@ public class NodeTouchHandler : TouchHandler
             this.transform.position = mouseWorldPosition;
 
             //reset the zvalue
-            float nodeZValue = this.GetComponent<NodeBehaviour>().GetZValue();
+            float nodeZValue = this.GetComponent<NodeProperties>().GetZValue();
             transform.position = new Vector3(transform.position.x, transform.position.y, nodeZValue);
 
             m_snappedAnchor = null;

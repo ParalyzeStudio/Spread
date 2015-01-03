@@ -11,6 +11,7 @@ GameObject:
   - 33: {fileID: 3312224}
   - 23: {fileID: 2312224}
   - 114: {fileID: 11412224}
+  - 114: {fileID: 11464802}
   - 114: {fileID: 11471018}
   m_Layer: 0
   m_Name: BridgePfb
@@ -73,8 +74,19 @@ MonoBehaviour:
   m_textureWrapMode: 0
   m_startPoint: {x: 0, y: 0}
   m_endPoint: {x: 0, y: 0}
-  m_solidBridgePrefab: {fileID: 112224}
   m_type: 0
+--- !u!114 &11464802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df02a4ce089a3a74caf5db830c013663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_solidBridgePrefab: {fileID: 112224}
 --- !u!114 &11471018
 MonoBehaviour:
   m_ObjectHideFlags: 1

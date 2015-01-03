@@ -56,13 +56,13 @@ public class GameController : MonoBehaviour
         for (int fadedBridgeIndex1 = 0; fadedBridgeIndex1 != allBridges.Length; fadedBridgeIndex1++)
         {
             GameObject bridgeObject1 = allBridges[fadedBridgeIndex1];
-            BridgeBehaviour bridge1 = bridgeObject1.GetComponent<BridgeBehaviour>();
+            Bridge bridge1 = bridgeObject1.GetComponent<Bridge>();
 
             for (int bridgeIndex2 = fadedBridgeIndex1 + 1; bridgeIndex2 != allBridges.Length; bridgeIndex2++)
             {
                 GameObject bridgeObject2 = allBridges[bridgeIndex2];
 
-                BridgeBehaviour bridge2 = bridgeObject2.GetComponent<BridgeBehaviour>();
+                Bridge bridge2 = bridgeObject2.GetComponent<Bridge>();
                 bool bIntersect;
                 Vector2 intersection;
                 MathUtils.TwoSegmentsIntersection(bridge1.m_startPoint, bridge1.m_endPoint,
@@ -138,8 +138,8 @@ public class GameController : MonoBehaviour
         GameObject[] allBridges = GameObject.FindGameObjectsWithTag("Bridge");
         foreach (GameObject bridge in allBridges)
         {
-            BridgeBehaviour bridgeBehaviour = bridge.GetComponent<BridgeBehaviour>();
-            if (bridgeBehaviour.m_type != BridgeBehaviour.BridgeType.Completed)
+            Bridge bridgeBehaviour = bridge.GetComponent<Bridge>();
+            if (bridgeBehaviour.m_type != Bridge.BridgeType.Completed)
                 return false;
         }
         return true;
