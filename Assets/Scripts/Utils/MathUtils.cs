@@ -2,19 +2,19 @@
 
 public class MathUtils
 {
-    public const float epsilon = 0.1f;
+    public const float DEFAULT_EPSILON = 0.1f;
 
-    static public bool AreFloatsEqual(float floatA, float floatB)
+    static public bool AreFloatsEqual(float floatA, float floatB, float epsilon = DEFAULT_EPSILON)
     {
         return Mathf.Abs(floatA - floatB) < epsilon;
     }
 
-    static public bool ArePointsEqual(Vector2 pointA, Vector2 pointB)
+    static public bool AreVec2PointsEqual(Vector2 pointA, Vector2 pointB, float epsilon = DEFAULT_EPSILON)
     {
         return (pointB - pointA).sqrMagnitude < epsilon;
     }
 
-    static public bool ArePointsEqual(Vector3 pointA, Vector3 pointB)
+    static public bool AreVec3PointsEqual(Vector3 pointA, Vector3 pointB, float epsilon = DEFAULT_EPSILON)
     {
         return (pointB - pointA).sqrMagnitude < epsilon;
     }
@@ -86,9 +86,9 @@ public class MathUtils
 
 
         //Check if (x, y) point is contained in both segments
-        if (((x > segment1Point1.x && x < segment1Point2.x) || AreFloatsEqual(x, segment1Point1.x) || AreFloatsEqual(x, segment1Point2.x))
+        if (isValueInInterval(x, segment1Point1.x, segment1Point2.x)
             &&
-            ((x > segment2Point1.x && x < segment2Point2.x) || AreFloatsEqual(x, segment2Point1.x) || AreFloatsEqual(x, segment2Point2.x)))
+            isValueInInterval(x, segment2Point1.x, segment2Point2.x))
         {
             intersects = true;
             intersection = new Vector2(x, y);
@@ -110,8 +110,23 @@ public class MathUtils
         float minY = Mathf.Min(pointA.y, pointB.y);
         float maxY = Mathf.Max(pointA.y, pointB.y);
 
-        return ((point.x >= minX && point.x <= maxX)
+        return (isValueInInterval(point.x, minX, maxX)
                 &&
-                (point.y >= minY && point.y <= maxY));
+                isValueInInterval(point.y, minY, maxY));
+    }
+
+    /**
+     * Returns true if valueToTest is in the interval [valueA - epsilon, valueB + epsilon]
+     * **/
+    static public bool isValueInInterval(float testValue, float valueA, float valueB, float epsilon = DEFAULT_EPSILON)
+    {
+        if (valueA > valueB) //reorder values in ascending order
+        {
+            float tmpValue = valueA;
+            valueA = valueB;
+            valueB = tmpValue;
+        }
+
+        return (testValue >= (valueA - epsilon) && testValue <= (valueB + epsilon));
     }
 }

@@ -531,6 +531,7 @@ GameObject:
   - 23: {fileID: 392512288}
   - 114: {fileID: 392512287}
   - 114: {fileID: 392512291}
+  - 114: {fileID: 392512292}
   - 114: {fileID: 392512290}
   m_Layer: 0
   m_Name: BridgePfb
@@ -545,7 +546,7 @@ Transform:
   m_PrefabParentObject: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
   m_PrefabInternal: {fileID: 968020218}
   m_GameObject: {fileID: 392512285}
-  m_LocalRotation: {x: 0, y: 0, z: .707107604, w: .707105994}
+  m_LocalRotation: {x: 0, y: 0, z: .707109749, w: .707103908}
   m_LocalPosition: {x: 91, y: 0, z: -100}
   m_LocalScale: {x: 558, y: 10, z: 1}
   m_Children: []
@@ -625,7 +626,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df02a4ce089a3a74caf5db830c013663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_solidBridgePrefab: {fileID: 392512285}
+  m_bridgePrefab: {fileID: 392512285}
+--- !u!114 &392512292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11472082, guid: cbb107bb1a7c04247a35e385c23a30ef,
+    type: 2}
+  m_PrefabInternal: {fileID: 968020218}
+  m_GameObject: {fileID: 392512285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e95af682cc20efe4eabb39fe17e90c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &497792969
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,6 +722,7 @@ GameObject:
   - 23: {fileID: 722881744}
   - 114: {fileID: 722881743}
   - 114: {fileID: 722881747}
+  - 114: {fileID: 722881748}
   - 114: {fileID: 722881746}
   m_Layer: 0
   m_Name: BridgePfb
@@ -803,7 +817,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df02a4ce089a3a74caf5db830c013663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_solidBridgePrefab: {fileID: 722881741}
+  m_bridgePrefab: {fileID: 722881741}
+--- !u!114 &722881748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11472082, guid: cbb107bb1a7c04247a35e385c23a30ef,
+    type: 2}
+  m_PrefabInternal: {fileID: 73381259}
+  m_GameObject: {fileID: 722881741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e95af682cc20efe4eabb39fe17e90c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &749377335
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,11 +962,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 2.22126505e-06
+      value: -4.37113883e-08
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_RootOrder
@@ -952,7 +978,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_startPoint.y
-      value: -278.998749
+      value: -279
       objectReference: {fileID: 0}
     - target: {fileID: 11412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_endPoint.x
@@ -960,7 +986,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_endPoint.y
-      value: -279.001251
+      value: -279
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_LocalScale.x
@@ -1020,11 +1046,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_LocalRotation.z
-      value: .707107604
+      value: .707109749
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .707105994
+      value: .707103908
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_RootOrder
@@ -1224,11 +1250,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_LocalRotation.z
-      value: .707107604
+      value: .707109749
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .707105994
+      value: .707103908
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_RootOrder
@@ -1295,6 +1321,7 @@ GameObject:
   - 23: {fileID: 1098217379}
   - 114: {fileID: 1098217378}
   - 114: {fileID: 1098217382}
+  - 114: {fileID: 1098217383}
   - 114: {fileID: 1098217381}
   m_Layer: 0
   m_Name: BridgePfb
@@ -1389,7 +1416,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df02a4ce089a3a74caf5db830c013663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_solidBridgePrefab: {fileID: 1098217376}
+  m_bridgePrefab: {fileID: 1098217376}
+--- !u!114 &1098217383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11472082, guid: cbb107bb1a7c04247a35e385c23a30ef,
+    type: 2}
+  m_PrefabInternal: {fileID: 1749570468}
+  m_GameObject: {fileID: 1098217376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e95af682cc20efe4eabb39fe17e90c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1432024869
 GameObject:
   m_ObjectHideFlags: 0
@@ -1431,6 +1470,7 @@ GameObject:
   - 23: {fileID: 1532990766}
   - 114: {fileID: 1532990765}
   - 114: {fileID: 1532990769}
+  - 114: {fileID: 1532990770}
   - 114: {fileID: 1532990768}
   m_Layer: 0
   m_Name: BridgePfb
@@ -1445,7 +1485,7 @@ Transform:
   m_PrefabParentObject: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
   m_PrefabInternal: {fileID: 1734997760}
   m_GameObject: {fileID: 1532990763}
-  m_LocalRotation: {x: 0, y: 0, z: .707108319, w: .707105339}
+  m_LocalRotation: {x: 0, y: 0, z: .707106829, w: .707106829}
   m_LocalPosition: {x: -279, y: 0, z: -100}
   m_LocalScale: {x: 548, y: 10, z: 1}
   m_Children: []
@@ -1465,8 +1505,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_textureRange: {x: 0, y: 0, z: 1, w: 1}
   m_textureWrapMode: 0
-  m_startPoint: {x: -278.99884, y: -274}
-  m_endPoint: {x: -279.00116, y: 274}
+  m_startPoint: {x: -279, y: -274}
+  m_endPoint: {x: -279, y: 274}
   m_type: 1
 --- !u!23 &1532990766
 Renderer:
@@ -1525,7 +1565,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df02a4ce089a3a74caf5db830c013663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_solidBridgePrefab: {fileID: 1532990763}
+  m_bridgePrefab: {fileID: 1532990763}
+--- !u!114 &1532990770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11472082, guid: cbb107bb1a7c04247a35e385c23a30ef,
+    type: 2}
+  m_PrefabInternal: {fileID: 1734997760}
+  m_GameObject: {fileID: 1532990763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e95af682cc20efe4eabb39fe17e90c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1633333055
 GameObject:
   m_ObjectHideFlags: 0
@@ -1611,6 +1663,7 @@ GameObject:
   - 23: {fileID: 1707344128}
   - 114: {fileID: 1707344127}
   - 114: {fileID: 1707344131}
+  - 114: {fileID: 1707344132}
   - 114: {fileID: 1707344130}
   m_Layer: 0
   m_Name: BridgePfb
@@ -1705,7 +1758,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df02a4ce089a3a74caf5db830c013663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_solidBridgePrefab: {fileID: 1707344125}
+  m_bridgePrefab: {fileID: 1707344125}
+--- !u!114 &1707344132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11472082, guid: cbb107bb1a7c04247a35e385c23a30ef,
+    type: 2}
+  m_PrefabInternal: {fileID: 241186596}
+  m_GameObject: {fileID: 1707344125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e95af682cc20efe4eabb39fe17e90c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1734997760
 Prefab:
   m_ObjectHideFlags: 0
@@ -1735,11 +1800,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_LocalRotation.z
-      value: .707108319
+      value: .707106829
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .707105339
+      value: .707106829
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_RootOrder
@@ -1747,7 +1812,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_startPoint.x
-      value: -278.99884
+      value: -279
       objectReference: {fileID: 0}
     - target: {fileID: 11412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_startPoint.y
@@ -1755,7 +1820,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_endPoint.x
-      value: -279.00116
+      value: -279
       objectReference: {fileID: 0}
     - target: {fileID: 11412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_endPoint.y
@@ -1886,6 +1951,7 @@ GameObject:
   - 23: {fileID: 1779618703}
   - 114: {fileID: 1779618702}
   - 114: {fileID: 1779618706}
+  - 114: {fileID: 1779618707}
   - 114: {fileID: 1779618705}
   m_Layer: 0
   m_Name: BridgePfb
@@ -1980,7 +2046,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df02a4ce089a3a74caf5db830c013663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_solidBridgePrefab: {fileID: 1779618700}
+  m_bridgePrefab: {fileID: 1779618700}
+--- !u!114 &1779618707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11472082, guid: cbb107bb1a7c04247a35e385c23a30ef,
+    type: 2}
+  m_PrefabInternal: {fileID: 1876373464}
+  m_GameObject: {fileID: 1779618700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e95af682cc20efe4eabb39fe17e90c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1837307767
 Prefab:
   m_ObjectHideFlags: 0
@@ -2085,6 +2163,7 @@ GameObject:
   - 23: {fileID: 1852788634}
   - 114: {fileID: 1852788633}
   - 114: {fileID: 1852788637}
+  - 114: {fileID: 1852788638}
   - 114: {fileID: 1852788636}
   m_Layer: 0
   m_Name: BridgePfb
@@ -2099,7 +2178,7 @@ Transform:
   m_PrefabParentObject: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
   m_PrefabInternal: {fileID: 1033564793}
   m_GameObject: {fileID: 1852788631}
-  m_LocalRotation: {x: 0, y: 0, z: .707107604, w: .707105994}
+  m_LocalRotation: {x: 0, y: 0, z: .707109749, w: .707103908}
   m_LocalPosition: {x: -91, y: 0, z: -100}
   m_LocalScale: {x: 558, y: 10, z: 1}
   m_Children: []
@@ -2179,7 +2258,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df02a4ce089a3a74caf5db830c013663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_solidBridgePrefab: {fileID: 1852788631}
+  m_bridgePrefab: {fileID: 1852788631}
+--- !u!114 &1852788638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11472082, guid: cbb107bb1a7c04247a35e385c23a30ef,
+    type: 2}
+  m_PrefabInternal: {fileID: 1033564793}
+  m_GameObject: {fileID: 1852788631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e95af682cc20efe4eabb39fe17e90c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1876373464
 Prefab:
   m_ObjectHideFlags: 0
@@ -2268,6 +2359,7 @@ GameObject:
   - 23: {fileID: 1931914683}
   - 114: {fileID: 1931914682}
   - 114: {fileID: 1931914686}
+  - 114: {fileID: 1931914687}
   - 114: {fileID: 1931914685}
   m_Layer: 0
   m_Name: BridgePfb
@@ -2282,7 +2374,7 @@ Transform:
   m_PrefabParentObject: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
   m_PrefabInternal: {fileID: 885470767}
   m_GameObject: {fileID: 1931914680}
-  m_LocalRotation: {x: 0, y: 0, z: -1, w: 2.22126505e-06}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: -4.37113883e-08}
   m_LocalPosition: {x: 0, y: -279, z: -100}
   m_LocalScale: {x: 548, y: 10, z: 1}
   m_Children: []
@@ -2302,8 +2394,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_textureRange: {x: 0, y: 0, z: 1, w: 1}
   m_textureWrapMode: 0
-  m_startPoint: {x: 274, y: -278.998749}
-  m_endPoint: {x: -274, y: -279.001251}
+  m_startPoint: {x: 274, y: -279}
+  m_endPoint: {x: -274, y: -279}
   m_type: 1
 --- !u!23 &1931914683
 Renderer:
@@ -2362,7 +2454,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df02a4ce089a3a74caf5db830c013663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_solidBridgePrefab: {fileID: 1931914680}
+  m_bridgePrefab: {fileID: 1931914680}
+--- !u!114 &1931914687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11472082, guid: cbb107bb1a7c04247a35e385c23a30ef,
+    type: 2}
+  m_PrefabInternal: {fileID: 885470767}
+  m_GameObject: {fileID: 1931914680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e95af682cc20efe4eabb39fe17e90c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1942715695
 GameObject:
   m_ObjectHideFlags: 0

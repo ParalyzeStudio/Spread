@@ -73,11 +73,12 @@ public class NodeTouchHandler : TouchHandler
                     m_targetIndicatorNode.GetComponent<NodeTouchHandler>().m_attachedAnchor = this.m_attachedAnchor;
                     m_targetIndicatorNode.GetComponent<NodeTouchHandler>().m_parentNode = this.gameObject;
 
-                    m_targetIndicatorBridge = (GameObject)Instantiate(m_targetIndicatorBridgePrefab,
-                                                                       targetIndicatorPosition,
-                                                                       Quaternion.identity);
+                    GameObject targetIndicatorBridge = (GameObject)Instantiate(m_targetIndicatorBridgePrefab);
 
-                    m_targetIndicatorBridge.GetComponent<Bridge>().m_type = Bridge.BridgeType.TargetIndicator;
+                    targetIndicatorBridge.GetComponent<Bridge>().m_type = Bridge.BridgeType.TargetIndicator;
+                    targetIndicatorBridge.GetComponent<Bridge>().m_startPoint = targetIndicatorPosition;
+                    targetIndicatorBridge.GetComponent<Bridge>().m_endPoint = targetIndicatorPosition;
+                    this.m_targetIndicatorBridge = targetIndicatorBridge;
                 }
             }
         }
@@ -104,27 +105,33 @@ public class NodeTouchHandler : TouchHandler
                 }
                 else
                 {
+                    Vector3 oldPosition = transform.position;
                     if (SnapToClosestAnchor())
-                        bMoveTargetIndicator = false;
-                    else
-                        bMoveTargetIndicator = true;
+                    {
+                        if (m_snappedAnchor == m_targetAnchor)
+                        {
+                            fProjectionLength = fDistanceToTargetAnchor;
+                        }
+                        else if (m_snappedAnchor == m_attachedAnchor) //remove the SnapToClosestAnchor effect by resetting the previous position and m_snappedAnchor to null
+                        {
+                            transform.position = oldPosition;
+                            m_snappedAnchor = null;
+                        }                        
+                    }
+                    bMoveTargetIndicator = true;
                 }
 
                 if (bMoveTargetIndicator)
-                {                  
-                    if (fProjectionLength <= fDistanceToTargetAnchor)
-                    {
-                        //set the new position of target indicator node
-                        float targetIndicatorNodeZValue = transform.position.z;
-                        transform.position = m_attachedAnchor.m_position + attachedAnchorToTargetAnchorDirection * fProjectionLength;
-                        transform.position = new Vector3(transform.position.x, transform.position.y, targetIndicatorNodeZValue);
-                    }
-                    else
-                    {
-                        Vector3 targetAnchorPosition = m_targetAnchor.m_position;
-                        targetAnchorPosition.z = NodeProperties.TARGET_ANCHOR_NODE_Z_VALUE;
-                        transform.position = targetAnchorPosition;
-                    }
+                {
+                    //set the new position of target indicator node
+                    float targetIndicatorNodeZValue = transform.position.z;
+                    transform.position = m_attachedAnchor.m_position + attachedAnchorToTargetAnchorDirection * fProjectionLength;
+                    transform.position = new Vector3(transform.position.x, transform.position.y, targetIndicatorNodeZValue);
+
+                    //update the endpoint of the target indicator bridge
+                    NodeTouchHandler parentNodeTouchHandler = m_parentNode.GetComponent<NodeTouchHandler>();
+                    GameObject targetIndBr = parentNodeTouchHandler.m_targetIndicatorBridge;
+                    m_parentNode.GetComponent<NodeTouchHandler>().m_targetIndicatorBridge.GetComponent<Bridge>().m_endPoint = transform.position;
                 }
             }            
         }
@@ -158,9 +165,13 @@ public class NodeTouchHandler : TouchHandler
         {
             if (m_snappedAnchor != null)
             {
+                Debug.Log("+++snapped anchor not null");
                 this.m_parentNode.GetComponent<NodeMovement>().MoveParentNodeToAnchor(m_snappedAnchor);               
             }
-            Destroy(this.gameObject);
+            else
+                Debug.Log("---snapped anchor NULL");
+            Destroy(this.gameObject); //destroy the target indicator node
+            Destroy(m_parentNode.GetComponent<NodeTouchHandler>().m_targetIndicatorBridge); //destroy the target indicator node
         }
     }
 
