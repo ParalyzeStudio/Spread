@@ -88,6 +88,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_movementPoints: 0
+  m_movementPointsPrefab: {fileID: 147558, guid: f3369bef60d65214f8db3785160b288f,
+    type: 2}
 --- !u!114 &11499966
 MonoBehaviour:
   m_ObjectHideFlags: 1

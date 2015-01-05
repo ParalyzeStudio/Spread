@@ -4,7 +4,7 @@ using System.Collections;
 public class NodeProperties : MonoBehaviour 
 {
     public const float NODE_Z_VALUE = -200.0f;
-    public const float TARGET_ANCHOR_NODE_Z_VALUE = -201.0f;
+    public const float TARGET_ANCHOR_NODE_Z_VALUE = -199.0f;
 
     public enum NodeType
     {

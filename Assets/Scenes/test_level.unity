@@ -331,7 +331,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2754eab5c7051247a45a35c5b234ed3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_isGUIItem: 1
   m_movementPoints: 100
+  m_movementPointsPrefab: {fileID: 0}
 --- !u!1001 &241186596
 Prefab:
   m_ObjectHideFlags: 0
@@ -546,7 +548,7 @@ Transform:
   m_PrefabParentObject: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
   m_PrefabInternal: {fileID: 968020218}
   m_GameObject: {fileID: 392512285}
-  m_LocalRotation: {x: 0, y: 0, z: .707110226, w: .707103431}
+  m_LocalRotation: {x: 0, y: 0, z: .707110524, w: .707103133}
   m_LocalPosition: {x: 91, y: 0, z: -100}
   m_LocalScale: {x: 558, y: 10, z: 1}
   m_Children: []
@@ -566,8 +568,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_textureRange: {x: 0, y: 0, z: 1, w: 1}
   m_textureWrapMode: 0
-  m_startPoint: {x: 91.0026703, y: -279}
-  m_endPoint: {x: 90.9973297, y: 279}
+  m_startPoint: {x: 91.0029068, y: -279}
+  m_endPoint: {x: 90.9970932, y: 279}
   m_type: 2
 --- !u!23 &392512288
 Renderer:
@@ -1046,11 +1048,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_LocalRotation.z
-      value: .707110226
+      value: .707110524
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .707103431
+      value: .707103133
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_RootOrder
@@ -1250,11 +1252,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_LocalRotation.z
-      value: .707110226
+      value: .707110524
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .707103431
+      value: .707103133
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_RootOrder
@@ -1485,7 +1487,7 @@ Transform:
   m_PrefabParentObject: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
   m_PrefabInternal: {fileID: 1734997760}
   m_GameObject: {fileID: 1532990763}
-  m_LocalRotation: {x: 0, y: 0, z: .707109392, w: .707104206}
+  m_LocalRotation: {x: 0, y: 0, z: .70710963, w: .707103968}
   m_LocalPosition: {x: -279, y: 0, z: -100}
   m_LocalScale: {x: 548, y: 10, z: 1}
   m_Children: []
@@ -1505,8 +1507,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_textureRange: {x: 0, y: 0, z: 1, w: 1}
   m_textureWrapMode: 0
-  m_startPoint: {x: -278.997986, y: -274}
-  m_endPoint: {x: -279.002014, y: 274}
+  m_startPoint: {x: -278.997803, y: -274}
+  m_endPoint: {x: -279.002197, y: 274}
   m_type: 1
 --- !u!23 &1532990766
 Renderer:
@@ -1800,11 +1802,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_LocalRotation.z
-      value: .707109392
+      value: .70710963
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .707104206
+      value: .707103968
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_RootOrder
@@ -2178,7 +2180,7 @@ Transform:
   m_PrefabParentObject: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
   m_PrefabInternal: {fileID: 1033564793}
   m_GameObject: {fileID: 1852788631}
-  m_LocalRotation: {x: 0, y: 0, z: .707110226, w: .707103431}
+  m_LocalRotation: {x: 0, y: 0, z: .707110524, w: .707103133}
   m_LocalPosition: {x: -91, y: 0, z: -100}
   m_LocalScale: {x: 558, y: 10, z: 1}
   m_Children: []
@@ -2198,8 +2200,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_textureRange: {x: 0, y: 0, z: 1, w: 1}
   m_textureWrapMode: 0
-  m_startPoint: {x: -90.9973297, y: -279}
-  m_endPoint: {x: -91.0026703, y: 279}
+  m_startPoint: {x: -90.9970932, y: -279}
+  m_endPoint: {x: -91.0029068, y: 279}
   m_type: 2
 --- !u!23 &1852788634
 Renderer:
