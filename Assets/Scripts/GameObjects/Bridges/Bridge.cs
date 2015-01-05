@@ -60,8 +60,6 @@ public class Bridge : UVQuad
 
     protected override void Update()
     {
-        float dt = Time.deltaTime;
-
         //set the correct position
         Vector2 bridgeCenter = (m_startPoint + m_endPoint) / 2.0f;
 

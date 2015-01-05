@@ -129,8 +129,6 @@ public class NodeTouchHandler : TouchHandler
                     transform.position = new Vector3(transform.position.x, transform.position.y, targetIndicatorNodeZValue);
 
                     //update the endpoint of the target indicator bridge
-                    NodeTouchHandler parentNodeTouchHandler = m_parentNode.GetComponent<NodeTouchHandler>();
-                    GameObject targetIndBr = parentNodeTouchHandler.m_targetIndicatorBridge;
                     m_parentNode.GetComponent<NodeTouchHandler>().m_targetIndicatorBridge.GetComponent<Bridge>().m_endPoint = transform.position;
                 }
             }            

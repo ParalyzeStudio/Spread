@@ -62,7 +62,8 @@ public class TouchHandler : MonoBehaviour
         {
             Touch touch = Input.GetTouch(0);
             touchLocation = Camera.main.ScreenToWorldPoint(touch.position);
-            if (touch.phase.Equals(TouchPhase.Began))
+
+            if (!m_selected)
             {
                 Rect touchAreaRect = new Rect();
                 Vector2 position = transform.position;
@@ -74,15 +75,17 @@ public class TouchHandler : MonoBehaviour
                     OnPointerDown(touchLocation);
                 }
             }
-            else if (touch.phase.Equals(TouchPhase.Moved))
+            else
             {
-                OnPointerMove(touchLocation);
+                Vector2 delta = Vector2.zero;
+                OnPointerMove(touchLocation, ref delta);
             }
-            else if (touch.phase.Equals(TouchPhase.Ended))
-            {
-                if (m_selected)
-                    OnPointerUp();
-            }
+            m_prevPointerLocation = touchLocation;
+        }
+        else if (Input.touchCount == 0)
+        {
+            if (m_selected)
+                OnPointerUp();
         }
         //TODO handle the case of 2 touches
         else if (Input.touchCount == 2)

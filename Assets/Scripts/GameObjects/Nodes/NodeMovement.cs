@@ -75,6 +75,12 @@ public class NodeMovement : MonoBehaviour
             else
                 transform.position = new Vector3(positionVec2.x, positionVec2.y, fZValue);
         }
+    }
+
+    void LateUpdate()
+    {
+        if (m_isGUIItem)
+            return;
 
         float textMeshZValue = m_movementPointsTextMesh.transform.position.z;
         m_movementPointsTextMesh.transform.position = new Vector3(transform.position.x, transform.position.y + m_movementPointsTextMeshYOffset, textMeshZValue);

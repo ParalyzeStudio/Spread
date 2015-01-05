@@ -243,8 +243,8 @@ RectTransform:
   m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -790, y: 0}
-  m_SizeDelta: {x: 32, y: 32}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &118650618
 MonoBehaviour:
@@ -332,8 +332,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_isGUIItem: 1
-  m_movementPoints: 100
+  m_movementPoints: 9
   m_movementPointsPrefab: {fileID: 0}
+  m_movementPointsTextMeshYOffset: 0
 --- !u!1001 &241186596
 Prefab:
   m_ObjectHideFlags: 0
@@ -429,6 +430,7 @@ GameObject:
   - 222: {fileID: 261225683}
   - 114: {fileID: 261225682}
   - 114: {fileID: 261225681}
+  - 114: {fileID: 261225685}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -474,7 +476,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 261225682}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 261225685}
+        m_MethodName: ClickOnQuit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &261225682
@@ -521,6 +535,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 128, y: 128}
   m_Pivot: {x: 1, y: 1}
+--- !u!114 &261225685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 261225680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24f27e04ad7e7f54d80cc8acd4049e43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_simpleNodePrefab: {fileID: 0}
 --- !u!1 &392512285
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,7 +574,7 @@ Transform:
   m_PrefabParentObject: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
   m_PrefabInternal: {fileID: 968020218}
   m_GameObject: {fileID: 392512285}
-  m_LocalRotation: {x: 0, y: 0, z: .707110524, w: .707103133}
+  m_LocalRotation: {x: 0, y: 0, z: .707113624, w: .707100034}
   m_LocalPosition: {x: 91, y: 0, z: -100}
   m_LocalScale: {x: 558, y: 10, z: 1}
   m_Children: []
@@ -568,8 +594,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_textureRange: {x: 0, y: 0, z: 1, w: 1}
   m_textureWrapMode: 0
-  m_startPoint: {x: 91.0029068, y: -279}
-  m_endPoint: {x: 90.9970932, y: 279}
+  m_startPoint: {x: 91.0053635, y: -279}
+  m_endPoint: {x: 90.9946365, y: 279}
   m_type: 2
 --- !u!23 &392512288
 Renderer:
@@ -843,6 +869,7 @@ GameObject:
   - 222: {fileID: 749377339}
   - 114: {fileID: 749377338}
   - 114: {fileID: 749377337}
+  - 114: {fileID: 749377340}
   m_Layer: 5
   m_Name: RestartButton
   m_TagString: Untagged
@@ -887,7 +914,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
+    m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
     m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
     m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
     m_ColorMultiplier: 1
@@ -905,7 +932,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 749377338}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 749377340}
+        m_MethodName: ClickOnRestart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &749377338
@@ -935,6 +974,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 749377335}
+--- !u!114 &749377340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 749377335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24f27e04ad7e7f54d80cc8acd4049e43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_simpleNodePrefab: {fileID: 0}
 --- !u!1001 &885470767
 Prefab:
   m_ObjectHideFlags: 0
@@ -1048,11 +1099,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_LocalRotation.z
-      value: .707110524
+      value: .707113624
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .707103133
+      value: .707100034
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_RootOrder
@@ -1252,11 +1303,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_LocalRotation.z
-      value: .707110524
+      value: .707113624
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .707103133
+      value: .707100034
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_RootOrder
@@ -1487,7 +1538,7 @@ Transform:
   m_PrefabParentObject: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
   m_PrefabInternal: {fileID: 1734997760}
   m_GameObject: {fileID: 1532990763}
-  m_LocalRotation: {x: 0, y: 0, z: .70710963, w: .707103968}
+  m_LocalRotation: {x: 0, y: 0, z: .707112968, w: .707100689}
   m_LocalPosition: {x: -279, y: 0, z: -100}
   m_LocalScale: {x: 548, y: 10, z: 1}
   m_Children: []
@@ -1507,8 +1558,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_textureRange: {x: 0, y: 0, z: 1, w: 1}
   m_textureWrapMode: 0
-  m_startPoint: {x: -278.997803, y: -274}
-  m_endPoint: {x: -279.002197, y: 274}
+  m_startPoint: {x: -278.995239, y: -274}
+  m_endPoint: {x: -279.004761, y: 274}
   m_type: 1
 --- !u!23 &1532990766
 Renderer:
@@ -1802,11 +1853,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_LocalRotation.z
-      value: .70710963
+      value: .707112968
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .707103968
+      value: .707100689
       objectReference: {fileID: 0}
     - target: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
       propertyPath: m_RootOrder
@@ -2102,7 +2153,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22443718, guid: fa6d4ae498e669744b88de095dd314d0, type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -790
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22443718, guid: fa6d4ae498e669744b88de095dd314d0, type: 2}
       propertyPath: m_AnchoredPosition.y
@@ -2110,11 +2161,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22443718, guid: fa6d4ae498e669744b88de095dd314d0, type: 2}
       propertyPath: m_SizeDelta.x
-      value: 32
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 22443718, guid: fa6d4ae498e669744b88de095dd314d0, type: 2}
       propertyPath: m_SizeDelta.y
-      value: 32
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 22443718, guid: fa6d4ae498e669744b88de095dd314d0, type: 2}
       propertyPath: m_AnchorMin.x
@@ -2146,7 +2197,7 @@ Prefab:
       objectReference: {fileID: 117240, guid: a1e3d18daf3a7c14382710612044138b, type: 2}
     - target: {fileID: 11459404, guid: fa6d4ae498e669744b88de095dd314d0, type: 2}
       propertyPath: m_movementPoints
-      value: 100
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fa6d4ae498e669744b88de095dd314d0, type: 2}
@@ -2180,7 +2231,7 @@ Transform:
   m_PrefabParentObject: {fileID: 412224, guid: cbb107bb1a7c04247a35e385c23a30ef, type: 2}
   m_PrefabInternal: {fileID: 1033564793}
   m_GameObject: {fileID: 1852788631}
-  m_LocalRotation: {x: 0, y: 0, z: .707110524, w: .707103133}
+  m_LocalRotation: {x: 0, y: 0, z: .707113624, w: .707100034}
   m_LocalPosition: {x: -91, y: 0, z: -100}
   m_LocalScale: {x: 558, y: 10, z: 1}
   m_Children: []
@@ -2200,8 +2251,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_textureRange: {x: 0, y: 0, z: 1, w: 1}
   m_textureWrapMode: 0
-  m_startPoint: {x: -90.9970932, y: -279}
-  m_endPoint: {x: -91.0029068, y: 279}
+  m_startPoint: {x: -90.9946365, y: -279}
+  m_endPoint: {x: -91.0053635, y: 279}
   m_type: 2
 --- !u!23 &1852788634
 Renderer:

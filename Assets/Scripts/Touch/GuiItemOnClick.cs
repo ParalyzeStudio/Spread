@@ -38,7 +38,8 @@ public class GuiItemOnClick : MonoBehaviour
      * **/
     public void ClickOnRestart()
     {
-
+        Debug.Log("restart");
+        Application.LoadLevel(Application.loadedLevel);
     }
 
     /**
