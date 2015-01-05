@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/**
+ * DEPRECATED - needs removal
+ * **/
 public class MaterialHolder : MonoBehaviour 
 {
     public List<Material> materials;

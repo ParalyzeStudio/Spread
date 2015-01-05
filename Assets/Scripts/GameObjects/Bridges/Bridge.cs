@@ -41,6 +41,9 @@ public class Bridge : UVQuad
         base.Start();
     }
 
+    /**
+     * Returns the correct value that should be assigned to a bridge depending on its type
+     * **/
     public float GetZValue()
     {
         if (m_type == BridgeType.Completed)
@@ -76,7 +79,9 @@ public class Bridge : UVQuad
     }
 
     
-
+    /**
+     * Notify all anchors on this bridge that a new bridge is now a parent of them
+     * **/
     public void NotifyAnchorsOfBridgeAddition(Bridge bridge)
     {
         for (int anchorIndex = 0; anchorIndex != m_anchors.Count; anchorIndex++)
@@ -85,6 +90,9 @@ public class Bridge : UVQuad
         }
     }
 
+    /**
+     * Notify all anchors on this bridge that a bridge is no longer a parent of them
+     * **/
     public void NotifyAnchorsOfBridgeRemoval(Bridge bridge)
     {
         for (int anchorIndex = 0; anchorIndex != m_anchors.Count; anchorIndex++)
@@ -93,6 +101,9 @@ public class Bridge : UVQuad
         }
     }
 
+    /**
+     * Set a new anchor as a child of this bridge
+     * **/
     public void PushAnchor(GridAnchor anchor)
     {
         for (int anchorIndex = 0; anchorIndex != m_anchors.Count; anchorIndex++)
@@ -104,6 +115,9 @@ public class Bridge : UVQuad
         m_anchors.Add(anchor);
     }
 
+    /**
+     * Removes a child anchor of this bridge
+     * **/
     public void RemoveAnchor(GridAnchor anchor)
     {
         //check if bridge is not already in this List 
@@ -137,27 +151,6 @@ public class Bridge : UVQuad
 
         return neighbouringAnchors;
     }
-
-    ///**
-    // * Retrieve closest anchors to parameter anchor and check if they are linked before returning them
-    // * **/
-    //public List<GridAnchor> GetNeighbouringLinkedAnchors(GridAnchor anchor)
-    //{
-    //    List<GridAnchor> neighbouringLinkedAnchors = new List<GridAnchor>();
-    //    neighbouringLinkedAnchors.Capacity = 2; //at most 2 neighbouring anchors
-
-    //    //find the closest linked anchor on segment [anchor.Position; m_startPoint]
-    //    GridAnchor neighbouringLinkedAnchor = FindClosestAnchorOnSegment(anchor, m_startPoint);
-    //    if (neighbouringLinkedAnchor != null && neighbouringLinkedAnchor.isLinked) //check if the closes anchor we found is linked
-    //        neighbouringLinkedAnchors.Add(neighbouringLinkedAnchor);
-
-    //    //do the same for the segment [anchor.Position; m_endPoint]
-    //    neighbouringLinkedAnchor = FindClosestAnchorOnSegment(anchor, m_endPoint);
-    //    if (neighbouringLinkedAnchor != null && neighbouringLinkedAnchor.isLinked) //check if the closes anchor we found is linked
-    //        neighbouringLinkedAnchors.Add(neighbouringLinkedAnchor);
-
-    //    return neighbouringLinkedAnchors;
-    //}
 
     /**
      * Returns the closest anchor on segment [anchor.Position; segmentEndPoint] or null if no one was found

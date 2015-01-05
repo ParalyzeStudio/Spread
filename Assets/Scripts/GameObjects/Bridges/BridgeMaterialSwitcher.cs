@@ -5,7 +5,9 @@ public class BridgeMaterialSwitcher : MonoBehaviour
 {
     private Bridge.BridgeType m_previousType;
 
-	// Update is called once per frame
+	/**
+     * Switchs over available materials at runtime and in editor depending on the type of the bridge
+     * **/
 	void Update () 
     {
         Bridge.BridgeType newBridgeType = this.gameObject.GetComponent<Bridge>().m_type;

@@ -62,25 +62,6 @@ public class GridAnchor
         }
     }
 
-    ///**
-    // * Retrieves the list of linked anchors that are directly neighbors of this anchor
-    // * **/
-    //public List<GridAnchor> FindNeighbouringLinkedAnchors()
-    //{
-    //    List<GridAnchor> neighbouringLinkedAnchors = new List<GridAnchor>();
-
-    //    foreach (BridgeBehaviour bridge in Bridges)
-    //    {
-    //        if (bridge.m_status == BridgeBehaviour.BridgeStatus.Completed)
-    //        {
-    //            List<GridAnchor> neighbouringLinkedNodesOnBridge = bridge.GetNeighbouringLinkedAnchors(this);
-    //            neighbouringLinkedAnchors.AddRange(neighbouringLinkedNodesOnBridge);
-    //        }
-    //    }
-
-    //    return neighbouringLinkedAnchors;
-    //}
-
     /**
     * Retrieves the list of linked anchors that are directly neighbors of this anchor and cache them
     * **/

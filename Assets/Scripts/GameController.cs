@@ -15,6 +15,9 @@ public class GameController : MonoBehaviour
         m_gameEnded = false;
     }
 
+    /**
+     * Entry point of the main code
+     * **/
 	void Start () 
     {
         ObtainAnchors();

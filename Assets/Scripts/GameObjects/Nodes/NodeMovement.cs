@@ -25,6 +25,9 @@ public class NodeMovement : MonoBehaviour
         }
     }
 
+    /**
+    * Moves the node to a target node on a straight line
+    * **/
     public void MoveParentNodeToAnchor(GridAnchor anchor)
     {
         if (m_movementPoints > 0)
@@ -36,6 +39,9 @@ public class NodeMovement : MonoBehaviour
         }
     }
 
+    /**
+     * Calls this function to refresh the movement points value displayed on the node
+     * **/
     void InvalidateMovementPointsTextMeshValue()
     {
         m_movementPointsTextMesh.GetComponent<TextMesh>().text = m_movementPoints.ToString();

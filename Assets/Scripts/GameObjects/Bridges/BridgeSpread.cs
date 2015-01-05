@@ -33,6 +33,9 @@ public class BridgeSpread : MonoBehaviour
         anchor.m_linked = true;
     }
 
+    /**
+     * Spreading bridges are scaled in the update function to make their size grow
+     * **/
     protected void Update()
     {
         float dt = Time.deltaTime;

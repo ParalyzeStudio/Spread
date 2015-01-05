@@ -17,12 +17,9 @@ public class NodeProperties : MonoBehaviour
     //GUI item that has been deactivated for creating this node
     public GameObject m_deactivatedGUIItem { get; set; }
 
-	// Use this for initialization
-	void Start () 
-    {
-	
-	}
-
+    /**
+     * Returns the correct value that should be assigned to a node depending on its type
+     * **/
     public float GetZValue()
     {
         if (m_nodeType == NodeType.Simple)
@@ -31,7 +28,5 @@ public class NodeProperties : MonoBehaviour
             return TARGET_ANCHOR_NODE_Z_VALUE;
 
         return 0;
-    }
-
-    
+    }    
 }
